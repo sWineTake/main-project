@@ -11,10 +11,10 @@ public class TestController {
 
 	private final TestService service;
 
-	@RequestMapping("/")
+	@RequestMapping("/test/main")
 	public String init(Model model) {
 		model.addAttribute("obj", service.getTestConnectionList());
-		return "/main/main";
+		return "/test/main";
 	}
 
 }

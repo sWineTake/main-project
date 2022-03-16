@@ -7,7 +7,7 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
-		<!--<typeAlias alias="User" type="com.uniwiz.baseProject.domain.user.User"/>-->
+		<typeAlias alias="TestInfo" type="com.twocow.song.test.TestParameter"/>
 	</typeAliases>
 	<mappers>
 	</mappers>
