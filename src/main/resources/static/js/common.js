@@ -1,7 +1,7 @@
 var Ajax = {};
 
 Ajax.execute = function(url, data, successFunction, option) {
-	option = option == null ? "POST" : option;
+	option = option == null ? "POST" : "GET";
 	$.ajax({
 		type : option,
 		async : true,
