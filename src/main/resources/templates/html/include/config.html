@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:fragment="configFragment">
-		<script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+		<link rel="shortcut icon" type="image/x-icon" th:href="@{/image/favicon.ico}">
+		<link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+		<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+
 		<script th:src="@{/js/common.js}"></script>
+		<script th:src="@{/vendor/bootstrap/js/bootstrap.js}"></script>
 
 		<script>
 			// 공통 스크립트 영역
 		</script>
+
 		<!-- 개별 CSS, JavaScript 영역 -->
 		<th:block data-layout-fragment="css"></th:block>
 		<th:block data-layout-fragment="script"></th:block>
-		<!--<link rel="stylesheet" th:href="@{/}"/>-->
 	</head>
 </html>

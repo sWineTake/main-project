@@ -16,5 +16,4 @@ public class TestController {
 		model.addAttribute("obj", service.getTestConnectionList());
 		return "/test/main";
 	}
-
 }

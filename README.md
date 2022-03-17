@@ -1,15 +1,20 @@
 # main-project
-## 프로젝트를 쉽게 시작하기위한 기본적인 셋팅이 되어있는 프로젝트!
 
 ### 프로젝트 규칙
 **--** interface default는 @implSpec 설명 적어두기
+
+### project-info
+1. DB : mysql
+2. template : Bootstrap
 
 ### 제공 기능
 > DataBase
 > > DB 연결 테스트
 
-### project-info
-1. DB : mysql
+> 프로젝트 디자인 템플릿
+> > Copyright © Start Bootstrap LLC 2021
+> > https://startbootstrap.com/templates
+
 
 ## DB info
 - MySqlConnection.java 파일로 DB접근 테스트 가능

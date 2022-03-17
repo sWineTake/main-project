@@ -3,8 +3,6 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 	<head th:replace="include/config :: configFragment"></head>
-	<body>
-		<div>Layout HTML</div>
-		<div layout:fragment="content"></div>
+	<body id="page-top" layout:fragment="content">
 	</body>
 </html>
