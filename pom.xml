@@ -78,6 +78,14 @@
 			<version>3.0.0</version>
 		</dependency>
 
+		<!-- AOP 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>5.3.16</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
