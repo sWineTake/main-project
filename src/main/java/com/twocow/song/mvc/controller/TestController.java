@@ -1,5 +1,6 @@
-package com.twocow.song.test;
+package com.twocow.song.mvc.controller;
 
+import com.twocow.song.mvc.service.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 		PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.twocow.song.test.TestRepository">
+<mapper namespace="com.twocow.song.mvc.repository.TestRepository">
 	<select id="getTestConnectionList" resultType="TestInfo">
 		SELECT COLUMN1,
 			   COLUMN2

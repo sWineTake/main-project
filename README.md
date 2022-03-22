@@ -6,6 +6,7 @@
 ### project-info
 1. DB : mysql
 2. template : Bootstrap
+3. AOP 공통 처리, Interceptor
 
 ### 제공 기능
 > DataBase
@@ -14,7 +15,7 @@
 > 프로젝트 디자인 템플릿
 > > Copyright © Start Bootstrap LLC 2021
 > > https://startbootstrap.com/templates
-
+ 
 
 ## DB info
 - MySqlConnection.java 파일로 DB접근 테스트 가능

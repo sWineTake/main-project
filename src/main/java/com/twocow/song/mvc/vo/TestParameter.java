@@ -1,4 +1,4 @@
-package com.twocow.song.test;
+package com.twocow.song.mvc.vo;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -85,6 +85,18 @@
 			<version>5.3.16</version>
 		</dependency>
 
+		<!-- log 라이브러리 -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+			<version>1.16</version>
+		</dependency>
+
+		<!-- log에서 DB 접근을 위한 라이브러리 -->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+		</dependency>
 
 	</dependencies>
 

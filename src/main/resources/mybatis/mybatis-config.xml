@@ -7,7 +7,7 @@
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
 	<typeAliases>
-		<typeAlias alias="TestInfo" type="com.twocow.song.test.TestParameter"/>
+		<typeAlias alias="TestInfo" type="com.twocow.song.mvc.vo.TestParameter"/>
 	</typeAliases>
 	<mappers>
 	</mappers>
