@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * AOP - 시작, 종료 공통 로직
+ * 참고 URL) https://twocowsong.tistory.com/54
  */
 @Component
 @Aspect
@@ -34,7 +35,7 @@ public class TraceAop {
 			// 종료 후 사용될 내용
 			// long finish = System.currentTimeMillis();
 			// long timeMs = finish - start;
-			//log.info("END : " + joinPoint.toString() + " " + timeMs + "ms" );
+			// log.info("END : " + joinPoint.toString() + " " + timeMs + "ms" );
 		}
 	}
 

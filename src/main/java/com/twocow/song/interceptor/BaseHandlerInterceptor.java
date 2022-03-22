@@ -18,7 +18,7 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String requestURI = request.getRequestURI();
-		log.info(requestURI);
+		// log.info(requestURI);
 
 		HandlerMethod handlerMethod = null;
 		if (handler instanceof HandlerMethod) {
@@ -29,8 +29,6 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 		if (handlerMethod != null) {
 			RequestConfig requestConfig = handlerMethod.getMethodAnnotation(RequestConfig.class);
 			if (requestConfig != null) {
-				// Controller에서 정상적으로 들어온경우 실행됨
-				// config.isLocal() || config.isDev() || config.isProd() 환경에 맞게 프로세스 실행 가능
 				if(requestConfig.login()) {
 					//로그인이 필요한경우
 				}
