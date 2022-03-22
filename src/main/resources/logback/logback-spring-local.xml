@@ -89,13 +89,10 @@
 		<level value="ERROR" />
 	</logger>
 
-	<logger name="com.vivasam.elementary">
+	<logger name="com.twocow.song">
 		<level value="DEBUG" />
 	</logger>
 
-	<logger name="com.vivasam.session">
-		<level value="DEBUG" />
-	</logger>
 
 	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
