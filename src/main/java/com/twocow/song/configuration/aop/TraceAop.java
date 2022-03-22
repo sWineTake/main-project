@@ -47,7 +47,6 @@ public class TraceAop {
 	@Around("execution(* com.twocow.song.mvc.repository..*(..))")
 	public Object queryExecute(ProceedingJoinPoint joinPoint) throws Throwable {
 		log.info(joinPoint.toString());
-		// 본문 내용 시작
 		Object result = joinPoint.proceed();
 		return result;
 	}

@@ -37,7 +37,8 @@ public class SpringConfig implements WebMvcConfigurer, WebMvcRegistrations {
 				"/js/**",
 				"/scss/**",
 				"/vendor/**",
-				"/sample/**"
+				"/sample/**",
+				"/favicon.ico"
 		);
 		registry.addInterceptor(baseHandlerInterceptor())
 				.addPathPatterns("/**")

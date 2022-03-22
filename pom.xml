@@ -98,6 +98,12 @@
 			<artifactId>mssql-jdbc</artifactId>
 		</dependency>
 
+		<!-- 아파치 lang3 라이브러리 (null 값 비교) -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
