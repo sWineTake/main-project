@@ -21,7 +21,7 @@ public @interface RequestConfig {
 	/*
 	 * API 여부
 	 * */
-	boolean isApi() default false;
+	boolean api() default false;
 
 	/*
 	 * 현재 메뉴 정보
