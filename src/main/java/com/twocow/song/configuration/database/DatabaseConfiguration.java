@@ -10,7 +10,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -37,7 +36,7 @@ import java.util.Properties;
 @Slf4j
 public class DatabaseConfiguration {
 
-	private final ApplicationContext context;
+	private final Environment env;
 
 	@Bean
 	public DataSource dataSource() {
@@ -46,7 +45,6 @@ public class DatabaseConfiguration {
 		// Connection을 Pool에서 쓰고 다시 Pool에 반환하는 기법을 말합니다.
 		// 미리 생성해두기 때문에 데이터베이스에 부하를 줄이고 유동적으로 연결을 관리 할 수 있습니다.
 		PooledDataSource dataSource = new PooledDataSource();
-		Environment env = context.getEnvironment();
 		dataSource.setDriver(env.getProperty("spring.datasource.driver-class-name"));
 		dataSource.setUrl(env.getProperty("spring.datasource.url"));
 		dataSource.setUsername(env.getProperty("spring.datasource.username"));
