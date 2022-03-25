@@ -110,6 +110,12 @@
 			<version>3.12.0</version>
 		</dependency>
 
+		<!-- DB 공통 트랜잭션 처리를위한 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>5.3.16</version>
+		</dependency>
 	</dependencies>
 
 	<build>

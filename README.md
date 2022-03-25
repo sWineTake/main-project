@@ -4,13 +4,20 @@
 **--** interface default는 @implSpec 설명 적어두기
 
 ### project-info
-1. DB : mysql
+1. DB : mysql(MyBatis)
 2. template : Bootstrap
 3. AOP 공통 처리, Interceptor
 
-### 제공 기능
+### 프로젝트 정보
 > DataBase
-> > DB 연결 테스트
+> > DB 연결 테스트 서비스 제공 (MySqlConnection.java)
+> 
+> > DB 트랜잭션 관리 Service단에서 메소드 호출시 이름으로 트랜잭션 관리됨
+
+> log
+> > AOP에서 xml실행전 클래스명.id 기록
+> 
+> > Dev, Prod 환경에서는 log파일 생성 및 기록
 
 > 프로젝트 디자인 템플릿
 > > Copyright © Start Bootstrap LLC 2021

@@ -23,7 +23,7 @@ public class TestController {
 
 	@RequestMapping("/main/test")
 	public String testMain(Model model) {
-		model.addAttribute("obj", service.getTestConnectionList());
+		model.addAttribute("obj", service.updateTestConnectionList());
 		return "/test/main";
 	}
 }

@@ -15,4 +15,11 @@ public class TestService {
 	public List<TestParameter> getTestConnectionList() {
 		return testRepository.getTestConnectionList();
 	}
+
+	public List<TestParameter> updateTestConnectionList() {
+		testRepository.updateTestConnectionList();
+		testRepository.updateTestConnectionList();
+		testRepository.updateTestConnectionList();
+		return testRepository.getTestConnectionList();
+	}
 }
