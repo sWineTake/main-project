@@ -4,12 +4,16 @@ import lombok.Getter;
 
 @Getter
 public enum Menu {
-	NONE("NONE"),
-	MAIN("MAIN");
+	NONE("NONE" , "미설정"),
+	MAIN("MAIN", "메인"),
+	USER_LOGIN("USER_LOGIN", "로그인"),
+	USER_JOIN("USER_JOIN", "회원가입");
 
 	private String name;
+	private String title;
 
-	Menu(String name) {
+	Menu(String name, String title) {
 		this.name = name;
+		this.title = title;
 	}
 }

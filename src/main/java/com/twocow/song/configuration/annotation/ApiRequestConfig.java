@@ -1,23 +1,25 @@
 package com.twocow.song.configuration.annotation;
 
 import com.twocow.song.enums.Menu;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.annotation.*;
 
 /**
- * RequsetConfig - PreHandler에서 사용
+ * ApiRequestConfig - PreHandler에서 사용
  */
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
+@ResponseBody
 @Documented
-public @interface RequestConfig {
+public @interface ApiRequestConfig {
 	/*
 	 * 로그인 여부
 	 * */
 	boolean login() default false;
 
 	/*
-	 * 현재 메뉴 정보
+	 * API 여부
 	 * */
-	Menu menu() default Menu.NONE;
+	boolean api() default true;
 }

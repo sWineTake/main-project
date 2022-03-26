@@ -1,11 +1,11 @@
 package com.twocow.song.mvc.controller;
-
 import com.twocow.song.configuration.annotation.RequestConfig;
 import com.twocow.song.enums.Menu;
 import com.twocow.song.mvc.service.TestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,7 +14,7 @@ public class TestController {
 
 	private final TestService service;
 
-	@RequestMapping("/main")
+	@GetMapping({"/main", "/"})
 	@RequestConfig(menu = Menu.MAIN)
 	public String init(Model model) {
 		model.addAttribute("obj", service.getTestConnectionList());

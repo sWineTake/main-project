@@ -1,8 +1,10 @@
 package com.twocow.song.interceptor;
 
 import com.twocow.song.configuration.GlobalConfig;
+import com.twocow.song.configuration.annotation.ApiRequestConfig;
 import com.twocow.song.configuration.annotation.RequestConfig;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
@@ -18,7 +20,7 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String requestURI = request.getRequestURI();
-		// log.info(requestURI);
+		log.info(requestURI);
 
 		HandlerMethod handlerMethod = null;
 		if (handler instanceof HandlerMethod) {
@@ -28,8 +30,17 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 
 		if (handlerMethod != null) {
 			RequestConfig requestConfig = handlerMethod.getMethodAnnotation(RequestConfig.class);
-			if (requestConfig != null) {
+			ApiRequestConfig apiRequestConfig = handlerMethod.getMethodAnnotation(ApiRequestConfig.class);
+
+			if (ObjectUtils.isNotEmpty(requestConfig)) { // 일반 호출
+				// 일반 호출일경우 메뉴이름 바인딩
+				request.setAttribute("menu", requestConfig.menu());
 				if(requestConfig.login()) {
+					//로그인이 필요한경우
+				}
+			}
+			else if (ObjectUtils.isNotEmpty(apiRequestConfig)) { // API 호출
+				if(apiRequestConfig.login()) {
 					//로그인이 필요한경우
 				}
 			}
@@ -41,4 +52,5 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 
 		return AsyncHandlerInterceptor.super.preHandle(request, response, handler);
 	}
+
 }
