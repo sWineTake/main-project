@@ -12,11 +12,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface RequestConfig {
 	/*
-	 * 로그인 여부
-	 * */
-	boolean login() default false;
-
-	/*
 	 * 현재 메뉴 정보
 	 * */
 	Menu menu() default Menu.NONE;

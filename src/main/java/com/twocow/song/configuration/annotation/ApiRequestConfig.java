@@ -1,6 +1,5 @@
 package com.twocow.song.configuration.annotation;
 
-import com.twocow.song.enums.Menu;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.lang.annotation.*;
@@ -18,8 +17,5 @@ public @interface ApiRequestConfig {
 	 * */
 	boolean login() default false;
 
-	/*
-	 * API 여부
-	 * */
-	boolean api() default true;
+
 }

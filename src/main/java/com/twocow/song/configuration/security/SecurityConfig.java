@@ -1,9 +1,11 @@
 package com.twocow.song.configuration.security;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 // 스프링에서 시큐리티 사용을 가능하게함
@@ -21,11 +23,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests()
 			.antMatchers("/user/auth/**").authenticated() // 로그인 한 사람만
-			.antMatchers("/manager/**").access("hasRole('ROLE_AMDIN') or hasRole('ROLE_MANAGER')") // 로그인 & 권한
-			.antMatchers("/admin/**").access("hasRole('ROLE_AMDIN')") // 로그인 & 권한
+			.antMatchers("/manager/**").access("hasRole('R002') or hasRole('R003')") // 로그인 & 권한
+			.antMatchers("/admin/**").access("hasRole('ROO3')") // 로그인 & 권한
 			.anyRequest().permitAll() // 위 url 제외는 모두 허용
 			.and()
 			.formLogin()
 			.loginPage("/user/login"); // 로그인이 필요한 페이지 접근 시 미로그인시 로그인화면으로 이동됨
 	}
+
+	// 패스워드 인코드
+	@Bean
+	public BCryptPasswordEncoder encodePassword() {
+		return new BCryptPasswordEncoder();
+	}
+
+
 }

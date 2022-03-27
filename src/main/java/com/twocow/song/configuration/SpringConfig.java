@@ -31,13 +31,11 @@ public class SpringConfig implements WebMvcConfigurer, WebMvcRegistrations {
 	public void addInterceptors(InterceptorRegistry registry) {
 		// 기본 인터셉터에 제외될 URL
 		List<String> excludePathPatterns = Arrays.asList(
-				"/error",
 				"/css/**",
 				"/image/**",
 				"/js/**",
 				"/scss/**",
 				"/vendor/**",
-				"/sample/**",
 				"/favicon.ico"
 		);
 		registry.addInterceptor(baseHandlerInterceptor())
