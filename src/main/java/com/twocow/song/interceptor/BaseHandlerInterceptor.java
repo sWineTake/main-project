@@ -43,9 +43,9 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 				}
 			}
 			else if (ObjectUtils.isNotEmpty(apiRequestConfig)) { // API 호출
-				if(apiRequestConfig.login()) {
+				/*if(apiRequestConfig.login()) {
 					//로그인이 필요한경우
-				}
+				}*/
 			}
 			else {
 				// Todo) 컨틀롤러에 맵핑된 RequestConfig가 없을경우 잘못된 요청으로 판단할것인지

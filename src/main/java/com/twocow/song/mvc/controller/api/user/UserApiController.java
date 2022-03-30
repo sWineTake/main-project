@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Map;
+
 @Controller
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
@@ -20,14 +22,14 @@ public class UserApiController {
 
 	@GetMapping
 	@ApiRequestConfig
-	public ResponseData checkUserIdExist(@RequestBody User user) {
+	public ResponseData<Map<String, Object>> checkUserIdExist(@RequestBody User user) {
 
 		return null;
 	}
 
 	@PostMapping
 	@ApiRequestConfig
-	public ResponseData insertUserInfo(@RequestBody User user) {
+	public ResponseData<Map<String, Object>> insertUserInfo(@RequestBody User user) {
 		// 유저 패스워드 암호화
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 

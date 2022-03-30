@@ -1,5 +1,7 @@
 package com.twocow.song.configuration.security;
 
+import com.twocow.song.enums.Menu;
+import com.twocow.song.enums.Role;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,10 +23,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// 헤더값에 인증여부 사용 여부
 		http.headers().frameOptions().disable();
 
+		String R002 = Role.R002.getRole();
+		String R003 = Role.R003.getRole();
 		http.authorizeRequests()
 			.antMatchers("/user/auth/**").authenticated() // 로그인 한 사람만
-			.antMatchers("/manager/**").access("hasRole('R002') or hasRole('R003')") // 로그인 & 권한
-			.antMatchers("/admin/**").access("hasRole('ROO3')") // 로그인 & 권한
+			.antMatchers("/manager/**").access("hasRole('" + R002 + "') or hasRole('" + R003 + "')") // 로그인 & 권한
+			.antMatchers("/admin/**").access("hasRole('" + R003 + "')") // 로그인 & 권한
 			.anyRequest().permitAll() // 위 url 제외는 모두 허용
 			.and()
 			.formLogin()

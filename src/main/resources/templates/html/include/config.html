@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head th:fragment="configFragment">
 
-		<title th:text="${'TWO | ' + menu.title}"></title>
+		<title th:text="${'TWO | ' + menu?.title}"></title>
 		<link rel="shortcut icon" type="image/x-icon" th:href="@{/image/favicon.ico}">
 		<link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
 		<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">

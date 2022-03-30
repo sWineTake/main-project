@@ -9,5 +9,5 @@ public class ResponseData<T> {
 	private boolean error;
 	private String resultCode;
 	private String message;
-	private T data;
+	private T response;
 }
