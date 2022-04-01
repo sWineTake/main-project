@@ -25,6 +25,7 @@ public class TestController {
 	@RequestConfig
 	public String testMain(Model model) {
 		model.addAttribute("obj", service.updateTestConnectionList());
+		int a = 5/ 0;
 		return "/test/main";
 	}
 }
