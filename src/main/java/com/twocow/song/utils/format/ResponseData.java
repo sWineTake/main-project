@@ -1,13 +1,21 @@
 package com.twocow.song.utils.format;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.twocow.song.enums.ApiError;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ResponseData<T> {
-	private boolean error;
-	private String resultCode;
+	private boolean error = false;
+	private ApiError apiError;
+	private String resultCode = ApiError.SUCCESS.getCode();
 	private String message;
 	private T response;
+
+	public ResponseData(String message) {
+		this.message = message;
+	}
 }

@@ -1,4 +1,4 @@
-package com.twocow.song.configuration.message;
+package com.twocow.song.utils.messages;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

@@ -9,6 +9,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,4 +76,13 @@ public class SpringConfig implements WebMvcConfigurer, WebMvcRegistrations {
 		source.setUseCodeAsDefaultMessage(true);
 		return source;
 	}
+
+	/**
+	  * 에러 리졸버에서 API처리는 JSON으로 리턴하기위한 jsonView설정
+	  * */
+	@Bean
+	MappingJackson2JsonView jsonView(){
+		return new MappingJackson2JsonView();
+	}
+
 }

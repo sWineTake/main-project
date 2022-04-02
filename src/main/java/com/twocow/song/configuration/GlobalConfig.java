@@ -17,6 +17,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.Properties;
 
+/**
+  * 로컬, 개발, 운영에 따른 값을 프로젝트 시작 후 바로 셋팅하여 설정함
+  * 서버단에서 바로 사용가능
+  * **/
 @Component
 @Getter
 @Slf4j
@@ -49,6 +53,9 @@ public class GlobalConfig {
 			local = activeEnv.equals("local");
 			dev = activeEnv.equals("dev");
 			prod = activeEnv.equals("prod");
+
+			// 예제
+			// String value = getValue("properties key");
 		}
 		catch (Exception e) {
 			log.info("resourcePath : {} 파일을 불러오는 중 오류가 발생했습니다.", resourcePath);
