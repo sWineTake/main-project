@@ -1,5 +1,6 @@
-package com.twocow.song.enums;
+package com.twocow.song.enums.api;
 
+import com.twocow.song.enums.Role;
 import lombok.Getter;
 
 @Getter

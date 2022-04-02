@@ -1,7 +1,8 @@
 var Ajax = {};
+var Func = {};
 
 Ajax.execute = function(url, data, successFunction, option) {
-	option = option == null ? "POST" : "GET";
+	option = option == null ? "GET" : option;
 	$.ajax({
 		type : option,
 		async : true,
@@ -10,11 +11,20 @@ Ajax.execute = function(url, data, successFunction, option) {
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success : function(data) {
-			successFunction(data);
+			if (Func.get(data, "result")) {
+				successFunction(data);
+			}
+			else {
+				alert(ERROR_MSG);
+			}
 		},
 		error : function() {
-			alert("데이터 처리중 에러가 발생하였습니다.");
+			alert(ERROR_MSG)
 			return false;
 		}
 	});
+}
+
+Func.get = function(obj, key) {
+	return obj == null ? undefined : obj[key];
 }

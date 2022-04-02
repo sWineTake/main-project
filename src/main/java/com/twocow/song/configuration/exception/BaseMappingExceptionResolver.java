@@ -2,7 +2,8 @@ package com.twocow.song.configuration.exception;
 
 import com.twocow.song.configuration.annotation.ApiRequestConfig;
 import com.twocow.song.configuration.annotation.RequestConfig;
-import com.twocow.song.enums.ApiError;
+import com.twocow.song.enums.api.Api;
+import com.twocow.song.enums.api.ApiError;
 import com.twocow.song.utils.format.ResponseData;
 import com.twocow.song.utils.messages.MessageConfig;
 import lombok.extern.slf4j.Slf4j;
@@ -59,7 +60,7 @@ public class BaseMappingExceptionResolver extends SimpleMappingExceptionResolver
 				log.info("!!!!!API ERROR MISS MATCH!!!!!");
 				log.info("ERROR TYPE : {}", ex.toString());
 			}
-			mav.addObject("result", responseData);
+			mav.addObject(Api.ERROR.getName(), responseData);
 			mav.setViewName("jsonView");
 		}
 		// 상위 2개 어노테이션을 담고있지않는경우 바로 에러화면으로 이동

@@ -1,6 +1,6 @@
 package com.twocow.song.utils.format;
 
-import com.twocow.song.enums.ApiError;
+import com.twocow.song.enums.api.ApiError;
 import lombok.*;
 
 @Getter

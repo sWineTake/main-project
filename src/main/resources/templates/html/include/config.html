@@ -7,6 +7,9 @@
 		<link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
 		<link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
 
+		<script th:inline="javascript">
+			const ERROR_MSG = [[ ${#messages.msg('error.common.msg')} ]];
+		</script>
 		<script th:src="@{/js/common.js}"></script>
 		<script th:src="@{/vendor/bootstrap/js/bootstrap.js}"></script>
 		<script th:src="@{/vendor/jquery/jquery.min.js}"></script>

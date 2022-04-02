@@ -19,10 +19,17 @@
 > 
 > > Dev, Prod 환경에서는 log파일 생성 및 기록
 
+> 스프링 시큐리티
+> > SecurityConfig 에서 상세 설정
+
+> 공통
+> > 에러 처리 BaseMappingExceptionResolver 에서 공통으로 처리함
+>
+> > Config 어노테이션처리로 preHandler에서 분기 가능 (스프링 시큐리티 사용으로 사용자가 알맞게 사용 분리할수있음)
+
 > 프로젝트 디자인 템플릿
 > > Copyright © Start Bootstrap LLC 2021
 > > https://startbootstrap.com/templates
- 
 
 ## DB info
 - MySqlConnection.java 파일로 DB접근 테스트 가능

@@ -1,7 +1,8 @@
 package com.twocow.song.mvc.controller.api.user;
 
 import com.twocow.song.configuration.annotation.ApiRequestConfig;
-import com.twocow.song.enums.ApiError;
+import com.twocow.song.enums.api.Api;
+import com.twocow.song.enums.api.ApiError;
 import com.twocow.song.mvc.vo.user.User;
 import com.twocow.song.utils.format.ResponseData;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.util.Map;
 
 @Controller
@@ -29,11 +31,9 @@ public class UserApiController {
 
 	@PostMapping
 	@ApiRequestConfig
-	public ResponseData insertUserInfo(@RequestBody User user) {
+	public Map<String, ResponseData> insertUserInfo(@RequestBody User user) {
 		// 유저 패스워드 암호화
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-
-		return new ResponseData(ApiError.SUCCESS.getName());
+		return Map.of(Api.SUCCESS.getName(), new ResponseData(ApiError.SUCCESS.getName()));
 	}
-
 }

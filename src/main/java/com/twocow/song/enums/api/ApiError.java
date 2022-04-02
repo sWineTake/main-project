@@ -1,4 +1,4 @@
-package com.twocow.song.enums;
+package com.twocow.song.enums.api;
 
 import lombok.Getter;
 
