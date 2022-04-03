@@ -28,3 +28,7 @@ Ajax.execute = function(url, data, successFunction, option) {
 Func.get = function(obj, key) {
 	return obj == null ? undefined : obj[key];
 }
+
+Func.isCheck = function(val) {
+	return val == null || typeof val == 'undefined' ? true : false;
+}

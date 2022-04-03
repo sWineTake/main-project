@@ -96,6 +96,7 @@ public class DatabaseConfiguration {
 		readAttribute.setTimeout(10); // Select 트랜잭션 시간 5초
 		String readOnly = readAttribute.toString();
 		properties.setProperty("get*", readOnly);
+		properties.setProperty("check*", readOnly);
 
 		// 트랜잭션
 		RuleBasedTransactionAttribute writeAttribute = new RuleBasedTransactionAttribute(

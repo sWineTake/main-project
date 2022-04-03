@@ -4,9 +4,16 @@
 	<th:block data-layout-fragment="script">
 		<script th:inline="javascript">
 			function idDoubleCheck() {
-				Ajax.execute('/api/user', "", function() {
+				let userId = $("#userId").val();
 
-				}, "POST")
+				if (Func.isCheck(userId)) {
+					alert("아이디를 입력해주세요.")
+				}
+				else {
+					Ajax.execute('/api/user/' + userId, null, function() {
+
+					})
+				}
 			}
 
 			function insertUserInfo() {

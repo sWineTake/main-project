@@ -3,15 +3,13 @@ package com.twocow.song.mvc.controller.api.user;
 import com.twocow.song.configuration.annotation.ApiRequestConfig;
 import com.twocow.song.enums.api.Api;
 import com.twocow.song.enums.api.ApiError;
+import com.twocow.song.mvc.service.user.UserService;
 import com.twocow.song.mvc.vo.user.User;
 import com.twocow.song.utils.format.ResponseData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -21,10 +19,15 @@ import java.util.Map;
 public class UserApiController {
 
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	private final UserService userService;
 
-	@GetMapping
+
+	@GetMapping("/{userId}")
 	@ApiRequestConfig
-	public ResponseData<Map<String, Object>> checkUserIdExist(@RequestBody User user) {
+	public Map<String, ResponseData> checkUserIdExist(@PathVariable String userId) {
+		//
+
+		userService.checkUserIdExist(userId);
 
 		return null;
 	}
