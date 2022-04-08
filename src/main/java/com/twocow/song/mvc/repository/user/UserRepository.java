@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository {
 	Integer checkUserIdExist(String userId);
+	Integer checkEmailExist(String email);
 
 }

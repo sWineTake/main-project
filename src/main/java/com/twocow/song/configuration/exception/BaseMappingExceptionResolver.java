@@ -55,6 +55,12 @@ public class BaseMappingExceptionResolver extends SimpleMappingExceptionResolver
 				responseData.setMessage(messageConfig.getMessage("error.arithmetic.msg"));
 			} else if (ex instanceof TransactionTimedOutException) {
 				responseData.setMessage(messageConfig.getMessage("error.transactionTimedOut.msg"));
+			} else if (ex instanceof CustomValidationException) { // 커스텀 exception
+				responseData.setMessage(messageConfig.getMessage("error.validation.missing.msg", ex.getMessage()));
+			} else if (ex instanceof CustomLengthValidationException) {
+				responseData.setMessage(messageConfig.getMessage("error.validation.length.missing.msg", ex.getMessage(),
+																((CustomLengthValidationException) ex).getMin(),
+																((CustomLengthValidationException) ex).getMax()));
 			} else {
 				responseData.setMessage(messageConfig.getMessage("error.arithmetic.msg"));
 				log.info("!!!!!API ERROR MISS MATCH!!!!!");

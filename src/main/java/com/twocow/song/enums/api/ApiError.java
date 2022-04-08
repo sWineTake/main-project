@@ -5,7 +5,8 @@ import lombok.Getter;
 @Getter
 public enum ApiError {
 	SUCCESS("200", "succeed"),
-	ERROR("400", "error")
+	ERROR("400", "error"),
+	FAIL("400", "fail")
 	;
 
 	private String code;

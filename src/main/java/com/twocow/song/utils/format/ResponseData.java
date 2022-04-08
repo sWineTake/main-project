@@ -18,4 +18,9 @@ public class ResponseData<T> {
 	public ResponseData(String message) {
 		this.message = message;
 	}
+
+	public ResponseData(boolean error, String message) {
+		this.error = error;
+		this.message = message;
+	}
 }

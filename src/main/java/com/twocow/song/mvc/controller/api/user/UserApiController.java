@@ -3,9 +3,12 @@ package com.twocow.song.mvc.controller.api.user;
 import com.twocow.song.configuration.annotation.ApiRequestConfig;
 import com.twocow.song.enums.api.Api;
 import com.twocow.song.enums.api.ApiError;
+import com.twocow.song.mvc.dto.BaseResponseData;
 import com.twocow.song.mvc.service.user.UserService;
+import com.twocow.song.mvc.vo.ServiceResponseData;
 import com.twocow.song.mvc.vo.user.User;
 import com.twocow.song.utils.format.ResponseData;
+import com.twocow.song.utils.validation.ValidationCheck;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,26 +20,32 @@ import java.util.Map;
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
 public class UserApiController {
-
-	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final UserService userService;
 
 
 	@GetMapping("/{userId}")
 	@ApiRequestConfig
-	public Map<String, ResponseData> checkUserIdExist(@PathVariable String userId) {
-		//
-
-		userService.checkUserIdExist(userId);
-
-		return null;
+	public BaseResponseData<String> checkUserIdExist(@PathVariable String userId) {
+		ValidationCheck.notEmpty(userId,8,16,"아이디");
+		return userService.checkUserIdExist(userId)
+				? new BaseResponseData<>(ApiError.FAIL.name())
+				: new BaseResponseData<>(ApiError.SUCCESS.name());
 	}
+
+	@GetMapping("/email/{email}")
+	@ApiRequestConfig
+	public BaseResponseData<ServiceResponseData> checkEmailExist(@PathVariable String email) {
+		ValidationCheck.notEmpty(email,0,50,"이메일");
+		return new BaseResponseData<>(userService.checkEmailExist(email));
+	}
+
 
 	@PostMapping
 	@ApiRequestConfig
-	public Map<String, ResponseData> insertUserInfo(@RequestBody User user) {
-		// 유저 패스워드 암호화
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		return Map.of(Api.SUCCESS.getName(), new ResponseData(ApiError.SUCCESS.getName()));
+	public BaseResponseData<ServiceResponseData> insertUserInfo(@RequestBody User user) {
+		ValidationCheck.notEmpty(user,"userId", 8, 16,"아이디");
+		ValidationCheck.notEmpty(user,"password","패스워드");
+		ValidationCheck.notEmpty(user,"email","이메일");
+		return new BaseResponseData<>(userService.insertUserInfo(user));
 	}
 }

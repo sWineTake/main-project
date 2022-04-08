@@ -2,22 +2,78 @@
       data-layout-decorate="~{include/layout}">
 	<!-- 개별 js -->
 	<th:block data-layout-fragment="script">
+		<script th:src="@{/js/validationUtil.js}"></script>
 		<script th:inline="javascript">
-			function idDoubleCheck() {
+			function idDoubleCheck(obj) {
 				let userId = $("#userId").val();
-
 				if (Func.isCheck(userId)) {
-					alert("아이디를 입력해주세요.")
+					alert("아이디를 입력해주세요.");
 				}
 				else {
-					Ajax.execute('/api/user/' + userId, null, function() {
-
-					})
+					if (!$(obj).hasClass("btn-primary")) {
+						Ajax.execute('/api/user/' + userId, null, function() {
+							alert('사용가능한 아이디입니다.');
+							$(obj).removeClass("btn-google");
+							$(obj).addClass("btn-primary ");
+							$(obj).text('ID 확인 완료');
+							$("#isUserIdDoubleCheck").val("Y");
+						})
+					}
+					else {
+						alert("아이디 중복확인이 완료되었습니다.");
+					}
 				}
+			}
+
+			function changeUserId(){
+				$("#btnIdDouble").removeClass("btn-primary");
+				$("#btnIdDouble").addClass("btn-google");
+				$("#btnIdDouble").text('ID 중복 확인');
+				$("#isUserIdDoubleCheck").val("N");
+			}
+
+			function pressPassword(obj) {
+				let pwd = $(obj).val();
+				setValidationMsg(isPasswordPattern(pwd));
+			}
+
+			function pressPasswordCheck(obj) {
+				let pwd = $("#password").val();
+				let pwdChk = $(obj).val();
+				setValidationMsg(isPasswordPatternCheck(pwd, pwdChk));
+			}
+
+			function isDoubleEmailCheck(obj) {
+				const email = $("#email").val();
+				if (Func.isCheck(email)) {
+					alert("아이디를 입력해주세요.");
+				}
+				else {
+					if (!$(obj).hasClass("btn-primary")) {
+						Ajax.execute('/api/user/email/' + email, null, function() {
+							alert('사용가능한 이메일입니다.');
+							$(obj).removeClass("btn-google");
+							$(obj).addClass("btn-primary ");
+							$(obj).text('Email 확인 완료');
+							$("#isEmailDoubleCheck").val("Y");
+						})
+					}
+					else {
+						alert("아이디 중복확인이 완료되었습니다.");
+					}
+				}
+			}
+
+			function pressEmailCheck(obj) {
+				setValidationMsg(isEmailPattern($(obj).val()));
 			}
 
 			function insertUserInfo() {
 
+			}
+
+			function setValidationMsg(text) {
+				$("#validatioMsg").text(text);
 			}
 		</script>
 	</th:block>
@@ -38,14 +94,20 @@
 									<div class="form-group row">
 										<div class="col-sm-6 mb-3 mb-sm-0">
 											<input type="text"
+											       maxlength="20"
 											       autocomplete="off"
+											       onfocus="javascript:changeUserId();"
 											       class="form-control form-control-user"
 											       id="userId"
 											       placeholder="user id">
+											<input type="hidden"
+											       id="isUserIdDoubleCheck"
+											       value="N">
 										</div>
 										<div class="col-sm-6">
 											<a class="btn btn-google btn-user btn-block"
-												onclick="javascript:idDoubleCheck();">ID 중복 확인</a>
+											   id="btnIdDouble"
+												onclick="javascript:idDoubleCheck(this);">ID 중복 확인</a>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -53,6 +115,8 @@
 											<input type="password"
 											       autocomplete="off"
 											       class="form-control form-control-user"
+											       onkeyup="javascript:pressPassword(this);"
+											       maxlength="16"
 											       id="password"
 											       placeholder="Password">
 										</div>
@@ -60,31 +124,46 @@
 											<input type="password"
 											       autocomplete="off"
 											       class="form-control form-control-user"
+											       onkeyup="javascript:pressPasswordCheck(this);"
+											       maxlength="16"
 											       id="checkPassword"
 											       placeholder="Repeat Password">
 										</div>
-										<div>
-
+									</div>
+									<div class="form-group row">
+										<div class="col-sm-6 mb-3 mb-sm-0">
+											<input type="email"
+											       autocomplete="off"
+											       onkeyup="javascript:pressEmailCheck(this);"
+											       class="form-control form-control-user"
+											       id="email"
+											       name="email"
+											       placeholder="Email Address">
+											<input type="hidden"
+											       id="isEmailDoubleCheck"
+											       value="N">
+										</div>
+										<div class="col-sm-6">
+											<a class="btn btn-google btn-user btn-block"
+											   onclick="javascript:isDoubleEmailCheck(this);">Email 중복 확인</a>
 										</div>
 									</div>
-									<div class="form-group">
-										<input type="email"
-										       autocomplete="off"
-										       class="form-control form-control-user"
-										       id="exampleInputEmail"
-										       placeholder="Email Address">
-									</div>
 
-									<a href="form.html" class="btn btn-primary btn-user btn-block">
+									<div class="password-msg font-color-red">
+										<span id="validatioMsg"></span>
+									</div>
+									<a href="javascript:void(0);"
+									   onclick=""
+									   class="btn btn-primary btn-user btn-block">
 										Register Account
 									</a>
-									<!-- <hr>
+									<!--/* <hr>
 									<a href="index.html" class="btn btn-google btn-user btn-block">
 										<i class="fab fa-google fa-fw"></i> Register with Google
 									</a>
 									<a href="index.html" class="btn btn-facebook btn-user btn-block">
 										<i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-									</a> -->
+									</a> */-->
 								</form>
 								<hr>
 								<div class="text-center">

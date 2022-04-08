@@ -12,13 +12,22 @@ Ajax.execute = function(url, data, successFunction, option) {
 		dataType: "json",
 		success : function(data) {
 			if (Func.get(data, "result")) {
-				successFunction(data);
+				if (Func.get(data, "result").error) {
+					alert(Func.get(data, "result").message)
+				}
+				else {
+					successFunction(data);
+				}
+			}
+			else if (Func.get(data, "error")) {
+
+				alert(Func.get(data, "error").message);
 			}
 			else {
 				alert(ERROR_MSG);
 			}
 		},
-		error : function() {
+		error : function(data) {
 			alert(ERROR_MSG)
 			return false;
 		}
@@ -30,5 +39,5 @@ Func.get = function(obj, key) {
 }
 
 Func.isCheck = function(val) {
-	return val == null || typeof val == 'undefined' ? true : false;
+	return val == null || typeof val == 'undefined' || val == '' ? true : false;
 }

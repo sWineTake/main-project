@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twocow.song.mvc.repository.user.UserRepository">
+	<select id="checkUserIdExist" resultType="Integer" parameterType="String">
+		SELECT COUNT(1)
+		  FROM USER
+		 WHERE USE_YN  = 'Y'
+		   AND USER_ID = #{userId}
+	</select>
+
+	<select id="checkEmailExist" resultType="Integer" parameterType="String">
+		SELECT COUNT(1)
+		  FROM USER
+		 WHERE USE_YN = 'Y'
+		   AND USER_ID = #{email}
+	</select>
+
+</mapper>

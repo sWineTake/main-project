@@ -13,4 +13,12 @@ public class MessageConfig {
 	public String getMessage(String code) {
 		return messageSource.getMessage(code, null, LocaleContextHolder.getLocale());
 	}
+
+	public String getMessage(String code, String label) {
+		return messageSource.getMessage(code, new String[]{label}, LocaleContextHolder.getLocale());
+	}
+
+	public String getMessage(String code, String label, int min, int max) {
+		return messageSource.getMessage(code, new String[]{label, Integer.toString(min), Integer.toString(max)}, LocaleContextHolder.getLocale());
+	}
 }
