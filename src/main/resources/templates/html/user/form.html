@@ -46,12 +46,12 @@
 			function isDoubleEmailCheck(obj) {
 				const email = $("#email").val();
 				if (Func.isCheck(email)) {
-					alert("아이디를 입력해주세요.");
+					alert("Email을 입력해주세요.");
 				}
 				else {
 					if (!$(obj).hasClass("btn-primary")) {
 						Ajax.execute('/api/user/email/' + email, null, function() {
-							alert('사용가능한 이메일입니다.');
+							alert('사용가능한 Email입니다.');
 							$(obj).removeClass("btn-google");
 							$(obj).addClass("btn-primary ");
 							$(obj).text('Email 확인 완료');
@@ -59,7 +59,7 @@
 						})
 					}
 					else {
-						alert("아이디 중복확인이 완료되었습니다.");
+						alert("Email 중복확인이 완료되었습니다.");
 					}
 				}
 			}
@@ -68,8 +68,30 @@
 				setValidationMsg(isEmailPattern($(obj).val()));
 			}
 
-			function insertUserInfo() {
+			function changeEmail() {
+				$("#btnEmailDouble").removeClass("btn-primary");
+				$("#btnEmailDouble").addClass("btn-google");
+				$("#btnEmailDouble").text('Email 중복 확인');
+				$("#isEmailDoubleCheck").val("N");
+			}
 
+			function insertUserInfo() {
+				if (Func.validationCheck($("#userInfo")[0])) {
+					const userId = $("#userId").val();
+					const password = $("#password").val();
+					const checkPassword = $("#checkPassword").val();
+					const email = $("#email").val();
+
+
+					if (Func.isNotEmptyAlert($("#isUserIdDoubleCheck").val() != 'Y', "아이디 중복 확인을 진행해주세요.")) {
+						return;
+					}
+					if (Func.isNotEmptyAlert(isPasswordPattern(password))) return;
+					if (Func.isNotEmptyAlert(isPasswordPatternCheck(password, checkPassword))) return;
+					if (Func.isNotEmptyAlert(isEmailPattern(email))) return;
+					if (Func.isNotEmptyAlert($("#isEmailDoubleCheck").val() != 'Y', "Email 중복 확인을 진행해주세요.")) return;
+					alert("회원가입 진행")
+				}
 			}
 
 			function setValidationMsg(text) {
@@ -96,6 +118,7 @@
 											<input type="text"
 											       maxlength="20"
 											       autocomplete="off"
+											       data-empty-label="아이디를"
 											       onfocus="javascript:changeUserId();"
 											       class="form-control form-control-user"
 											       id="userId"
@@ -106,8 +129,7 @@
 										</div>
 										<div class="col-sm-6">
 											<a class="btn btn-google btn-user btn-block"
-											   id="btnIdDouble"
-												onclick="javascript:idDoubleCheck(this);">ID 중복 확인</a>
+											   id="btnIdDouble" onclick="javascript:idDoubleCheck(this);">ID 중복 확인</a>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -115,6 +137,7 @@
 											<input type="password"
 											       autocomplete="off"
 											       class="form-control form-control-user"
+											       data-empty-label="패스워드를"
 											       onkeyup="javascript:pressPassword(this);"
 											       maxlength="16"
 											       id="password"
@@ -124,6 +147,7 @@
 											<input type="password"
 											       autocomplete="off"
 											       class="form-control form-control-user"
+											       data-empty-label="패스워드 확인을"
 											       onkeyup="javascript:pressPasswordCheck(this);"
 											       maxlength="16"
 											       id="checkPassword"
@@ -135,6 +159,8 @@
 											<input type="email"
 											       autocomplete="off"
 											       onkeyup="javascript:pressEmailCheck(this);"
+											       onfocus="javascript:changeEmail(this);"
+											       data-empty-label="이메일을"
 											       class="form-control form-control-user"
 											       id="email"
 											       name="email"
@@ -145,7 +171,7 @@
 										</div>
 										<div class="col-sm-6">
 											<a class="btn btn-google btn-user btn-block"
-											   onclick="javascript:isDoubleEmailCheck(this);">Email 중복 확인</a>
+											   id="btnEmailDouble" onclick="javascript:isDoubleEmailCheck(this);">Email 중복 확인</a>
 										</div>
 									</div>
 
@@ -153,7 +179,7 @@
 										<span id="validatioMsg"></span>
 									</div>
 									<a href="javascript:void(0);"
-									   onclick=""
+									   onclick="javascript:insertUserInfo();"
 									   class="btn btn-primary btn-user btn-block">
 										Register Account
 									</a>

@@ -26,6 +26,8 @@
 > > 에러 처리 BaseMappingExceptionResolver 에서 공통으로 처리함
 >
 > > Config 어노테이션처리로 preHandler에서 분기 가능 (스프링 시큐리티 사용으로 사용자가 알맞게 사용 분리할수있음)
+> 
+> > Validation 객체를 만들어서 파라미터에 맞는 값 체크 가능 - 기준 맞지않을시 커스텀에러 발생
 
 > 프로젝트 디자인 템플릿
 > > Copyright © Start Bootstrap LLC 2021

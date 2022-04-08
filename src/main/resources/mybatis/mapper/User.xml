@@ -17,4 +17,19 @@
 		   AND USER_ID = #{email}
 	</select>
 
+	<insert id="insertUserInfo" parameterType="com.twocow.song.mvc.vo.user.User">
+		INSERT INTO USER (
+		    USER_ID,
+			PASSWORD,
+			EMAIL,
+			ROLE
+		)
+		VALUES (
+			#{userId},
+			#{password},
+			#{email},
+			#{role}
+		)
+	</insert>
+
 </mapper>
