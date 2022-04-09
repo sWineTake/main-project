@@ -30,16 +30,6 @@ public class PasswordUtils {
 			return new ServiceResponseData(true, messageConfig.getMessage("passwrod.containsId.pattern"));
 		}
 
-		// 특수문자 확인
-		Pattern getSpecial = Pattern.compile("\\W");
-		Pattern passPattern4 = Pattern.compile("[!@#$%^*+=-]");
-		for(int i = 0; i < pwd.length(); i++){
-			String getChar = String.valueOf(pwd.charAt(i));
-			if(getSpecial.matcher(getChar).find() && passPattern4.matcher(getChar).find()){
-				return new ServiceResponseData(true, messageConfig.getMessage("passwrod.special.pattern"));
-			}
-		}
-
 		return new ServiceResponseData();
 	}
 

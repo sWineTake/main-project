@@ -1,20 +1,16 @@
 package com.twocow.song.mvc.controller.api.user;
 
 import com.twocow.song.configuration.annotation.ApiRequestConfig;
-import com.twocow.song.enums.api.Api;
 import com.twocow.song.enums.api.ApiError;
 import com.twocow.song.mvc.dto.BaseResponseData;
 import com.twocow.song.mvc.service.user.UserService;
 import com.twocow.song.mvc.vo.ServiceResponseData;
 import com.twocow.song.mvc.vo.user.User;
-import com.twocow.song.utils.format.ResponseData;
 import com.twocow.song.utils.validation.ValidationCheck;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 
 @Controller
 @RequestMapping("/api/user")

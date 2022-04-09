@@ -50,7 +50,7 @@ Ajax.execute = function(url, data, successFunction, option) {
  * @returns {boolean}
  */
 Func.validationCheck = function (form) {
-	for (const formElement of form) {
+	for (const formElement of form[0]) {
 		if (!$(formElement).hasClass('not-required-value')) {
 			// 필수값이 아닐때만 값 확인
 			if ($(formElement).val() == '') {
@@ -80,6 +80,20 @@ Func.isNotEmptyAlert = function (value, msg) {
 		return true;
 	}
 	return false;
+}
+
+/**
+ * AJAX 데이터 전송전 form태그를 입력받아 배열로 만들어서 리턴
+ * @param form
+ * @returns {{}}
+ */
+// $.fn.serializeObject = function () {
+Func.getObject = function (form) {
+	let retObject = {};
+	for (const formElement of form[0]) {
+		retObject[$(formElement).attr('id')] = $(formElement).val();
+	}
+	return retObject;
 }
 
 Func.get = function(obj, key) {

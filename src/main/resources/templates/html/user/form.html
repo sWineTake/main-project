@@ -76,21 +76,25 @@
 			}
 
 			function insertUserInfo() {
-				if (Func.validationCheck($("#userInfo")[0])) {
+				setValidationMsg('');
+				if (Func.validationCheck($("#userInfo"))) {
 					const userId = $("#userId").val();
 					const password = $("#password").val();
 					const checkPassword = $("#checkPassword").val();
 					const email = $("#email").val();
 
-
-					if (Func.isNotEmptyAlert($("#isUserIdDoubleCheck").val() != 'Y', "아이디 중복 확인을 진행해주세요.")) {
-						return;
-					}
+					if (Func.isNotEmptyAlert($("#isUserIdDoubleCheck").val() != 'Y', "아이디 중복 확인을 진행해주세요.")) return;
 					if (Func.isNotEmptyAlert(isPasswordPattern(password))) return;
 					if (Func.isNotEmptyAlert(isPasswordPatternCheck(password, checkPassword))) return;
 					if (Func.isNotEmptyAlert(isEmailPattern(email))) return;
 					if (Func.isNotEmptyAlert($("#isEmailDoubleCheck").val() != 'Y', "Email 중복 확인을 진행해주세요.")) return;
-					alert("회원가입 진행")
+
+					Ajax.execute('/api/user', Func.getObject($("#userInfo"))
+						, function(){
+							alert('정상적으로 회원가입이 완료되었습니다.');
+							location.href = "/user/login";
+						}, 'POST')
+
 				}
 			}
 
@@ -179,8 +183,8 @@
 										<span id="validatioMsg"></span>
 									</div>
 									<a href="javascript:void(0);"
-									   onclick="javascript:insertUserInfo();"
-									   class="btn btn-primary btn-user btn-block">
+										onclick="javascript:insertUserInfo();"
+										class="btn btn-primary btn-user btn-block">
 										Register Account
 									</a>
 									<!--/* <hr>
