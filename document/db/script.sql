@@ -17,11 +17,14 @@ create table user
 	role varchar(10) default 'R001' not null comment '권한 레벨',
 	insert_dt datetime default CURRENT_TIMESTAMP not null comment '생성일자',
 	delete_dt datetime null comment '삭제 일자',
+	login_dt datetime null comment '로그인 일자',
 	use_yn varchar(2) default 'Y' not null,
 	constraint user_user_id_uindex
 		unique (user_id)
 )
 comment '유저 정보';
 alter table user add primary key (user_id);
+
+
 
 

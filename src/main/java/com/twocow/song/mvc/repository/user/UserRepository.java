@@ -10,4 +10,5 @@ public interface UserRepository {
 	Integer checkUserIdExist(String userId);
 	Integer checkEmailExist(String email);
 	Integer insertUserInfo(User user);
+	User getUserInfo(String username);
 }

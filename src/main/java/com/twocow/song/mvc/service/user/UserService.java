@@ -51,5 +51,4 @@ public class UserService {
 			? new ServiceResponseData()
 			: new ServiceResponseData(true, "회원가입시 문제가 발생하였습니다. 다시 시도해주세요.");
 	}
-
 }

@@ -32,4 +32,19 @@
 		)
 	</insert>
 
+	<select id="getUserInfo" parameterType="String"
+	        resultType="com.twocow.song.mvc.vo.user.User">
+		SELECT  USER_ID,
+				PASSWORD,
+				EMAIL,
+				ROLE,
+				INSERT_DT,
+				DELETE_DT,
+				LOGIN_DT,
+				USE_YN
+		  FROM USER
+		 WHERE USE_YN = 'Y'
+		   AND USER_ID = #{username}
+	</select>
+
 </mapper>
