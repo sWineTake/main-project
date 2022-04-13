@@ -36,19 +36,24 @@ public class BaseMappingExceptionResolver extends SimpleMappingExceptionResolver
 
 		// 일반 컨트롤러에 대한 에러처리 -> 에러 얼럿 문구 후 404 화면으로 이동
 		if (ObjectUtils.isNotEmpty(requestConfig)) {
+			mav.setViewName("error");
 			if (ex instanceof ArithmeticException) {
 				setMessage(messageConfig.getMessage("error.arithmetic.msg"), response);
 			} else if (ex instanceof TransactionTimedOutException) {
 				// DB 트랜잭션 에러
 				setMessage(messageConfig.getMessage("error.transactionTimedOut.msg"), response);
+			} else if (ex instanceof LoginValidationException) {
+				setMessage(messageConfig.getMessage("error.not-login.msg"), response);
+				mav.addObject("goUrl", ((LoginValidationException) ex).getGoUrl());
+				mav.setViewName("/user/login");
 			} else {
 				log.info("!!!!!ERROR MISS MATCH!!!!! --- !!!ERROR DIVISION REQUEST!!!");
 				log.info("ERROR TYPE : {}", ex.toString());
 			}
-			mav.setViewName("error");
 		}
 		// API에 대한 에러처리 -> 에러 내용을 담은 JSON 객체 리턴
 		else if (ObjectUtils.isNotEmpty(apiRequestConfig)) {
+			// 에러코드처리
 			ResponseData responseData = ResponseData.builder()
 													.apiError(ApiError.ERROR).build();
 			if (ex instanceof ArithmeticException) {
@@ -59,8 +64,8 @@ public class BaseMappingExceptionResolver extends SimpleMappingExceptionResolver
 				responseData.setMessage(messageConfig.getMessage("error.validation.missing.msg", ex.getMessage()));
 			} else if (ex instanceof CustomLengthValidationException) {
 				responseData.setMessage(messageConfig.getMessage("error.validation.length.missing.msg", ex.getMessage(),
-																((CustomLengthValidationException) ex).getMin(),
-																((CustomLengthValidationException) ex).getMax()));
+													((CustomLengthValidationException) ex).getMin(),
+													((CustomLengthValidationException) ex).getMax()));
 			} else {
 				responseData.setMessage(messageConfig.getMessage("error.arithmetic.msg"));
 				log.info("!!!!!API ERROR MISS MATCH!!!!!");

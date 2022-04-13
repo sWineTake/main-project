@@ -44,4 +44,13 @@ public class UserApiController {
 		ValidationCheck.notEmpty(user,"email","이메일");
 		return new BaseResponseData<>(userService.insertUserInfo(user));
 	}
+
+	@PostMapping("/login")
+	@ApiRequestConfig
+	public BaseResponseData<ServiceResponseData> loginUserInfo(@RequestBody User user) {
+		ValidationCheck.notEmpty(user,"userId", "아이디");
+		ValidationCheck.notEmpty(user,"password","패스워드");
+		return new BaseResponseData<>(userService.workUserInfo(user));
+	}
+
 }

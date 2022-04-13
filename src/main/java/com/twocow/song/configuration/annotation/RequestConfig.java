@@ -15,4 +15,9 @@ public @interface RequestConfig {
 	 * 현재 메뉴 정보
 	 * */
 	Menu menu() default Menu.NONE;
+
+	/*
+	 * 로그인 여부 
+	 * */
+	boolean login() default false;
 }

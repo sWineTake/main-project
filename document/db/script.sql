@@ -18,12 +18,14 @@ create table user
 	insert_dt datetime default CURRENT_TIMESTAMP not null comment '생성일자',
 	delete_dt datetime null comment '삭제 일자',
 	login_dt datetime null comment '로그인 일자',
+	wrong_cnt int default 0 null comment '패스워드 틀릿 횟수',
 	use_yn varchar(2) default 'Y' not null,
-	constraint user_user_id_uindex
-		unique (user_id)
+	constraint user_user_id_uindex unique (user_id)
 )
 comment '유저 정보';
 alter table user add primary key (user_id);
+
+
 
 
 

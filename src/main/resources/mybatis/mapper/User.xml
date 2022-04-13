@@ -41,10 +41,23 @@
 				INSERT_DT,
 				DELETE_DT,
 				LOGIN_DT,
+				WRONG_CNT,
 				USE_YN
 		  FROM USER
 		 WHERE USE_YN = 'Y'
-		   AND USER_ID = #{username}
+		   AND USER_ID = #{userId}
 	</select>
+
+	<update id="updateWrongCnt" parameterType="String">
+		UPDATE USER SET WRONG_CNT = WRONG_CNT + 1
+		 WHERE USE_YN = 'Y'
+		   AND USER_ID = #{userId}
+	</update>
+
+	<update id="updateWrongCntClear" parameterType="String">
+		UPDATE USER SET WRONG_CNT = 0
+		WHERE USE_YN = 'Y'
+		  AND USER_ID = #{userId}
+	</update>
 
 </mapper>

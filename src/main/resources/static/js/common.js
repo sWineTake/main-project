@@ -49,7 +49,7 @@ Ajax.execute = function(url, data, successFunction, option) {
  * @param form
  * @returns {boolean}
  */
-Func.validationCheck = function (form) {
+Func.validationCheck = function(form) {
 	for (const formElement of form[0]) {
 		if (!$(formElement).hasClass('not-required-value')) {
 			// 필수값이 아닐때만 값 확인
@@ -67,7 +67,7 @@ Func.validationCheck = function (form) {
  * msg 입력 시 입력값이 없으면 msg 출력
  * @param value
  */
-Func.isNotEmptyAlert = function (value, msg) {
+Func.isNotEmptyAlert = function(value, msg) {
 	if (!Func.isCheck(value)) {
 		if (typeof value == 'boolean') {
 			if (value) {
@@ -84,22 +84,68 @@ Func.isNotEmptyAlert = function (value, msg) {
 
 /**
  * AJAX 데이터 전송전 form태그를 입력받아 배열로 만들어서 리턴
- * @param form
  * @returns {{}}
  */
-// $.fn.serializeObject = function () {
-Func.getObject = function (form) {
+$.fn.getObject = function() {
 	let retObject = {};
-	for (const formElement of form[0]) {
+	for (const formElement of this[0]) {
 		retObject[$(formElement).attr('id')] = $(formElement).val();
 	}
 	return retObject;
 }
 
+/**
+ * 해당 값 가져오기 - null 에러가 발생되지않게 함수를 사용함
+ * @param obj
+ * @param key
+ * @returns {undefined|*}
+ */
 Func.get = function(obj, key) {
 	return obj == null ? undefined : obj[key];
 }
 
+/**
+ * 해당값 유무 확인
+ * @param val
+ * @returns {boolean}
+ */
 Func.isCheck = function(val) {
 	return val == null || typeof val == 'undefined' || val == '' ? true : false;
+}
+
+/**
+ * Checkbox 설정
+ * @param obj
+ * @returns {*|jQuery}
+ */
+Func.isCheckBox = function(obj) {
+	return $(obj).is(':checked');
+}
+Func.setCheckBox = function(obj, is) {
+	$(obj).prop('checked', is);
+}
+
+/**
+ * 로컬 스토리지 설정
+ */
+Func.setLocalStorage = function(key, val) {
+	localStorage.setItem(key, val);
+}
+Func.delLocalStorage = function(key) {
+	localStorage.removeItem(key);
+}
+Func.getLocalStorage = function(key) {
+	return localStorage.getItem(key);
+}
+
+/**
+ * 엔터키 여부
+ * @param e
+ * @returns {boolean}
+ */
+Func.pressEnterKey = function(e) {
+	if (e.keyCode == 13) {
+		return true;
+	}
+	return false;
 }

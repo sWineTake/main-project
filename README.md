@@ -21,6 +21,8 @@
 
 > 스프링 시큐리티
 > > SecurityConfig 에서 상세 설정
+>
+> > 시큐리티 로그인기능 사용하지않음. 레디스를 사용하기때문에 /api/user/login으로 로그인을 진행
 
 > 공통
 > > 에러 처리 BaseMappingExceptionResolver 에서 공통으로 처리함

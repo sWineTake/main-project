@@ -106,6 +106,7 @@ public class DatabaseConfiguration {
 		properties.setProperty("update*", write);
 		properties.setProperty("delete*", write);
 		properties.setProperty("insert*", write);
+		properties.setProperty("work*", write); //여러번의 insert,update,delete가 일어나는 작업
 
 		// 설정 바인딩
 		txAdvice.setTransactionAttributes(properties);
