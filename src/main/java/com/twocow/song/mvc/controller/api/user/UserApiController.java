@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserApiController {
 	private final UserService userService;
 
-
 	@GetMapping("/{userId}")
 	@ApiRequestConfig
 	public BaseResponseData<String> checkUserIdExist(@PathVariable String userId) {

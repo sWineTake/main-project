@@ -20,6 +20,7 @@ public class LoginController {
 	@GetMapping("/login")
 	@RequestConfig(menu = Menu.USER_LOGIN)
 	public String login() {
+		if (sessionUtils.isLogin()) return "redirect:/main";
 		return "/user/login";
 	}
 

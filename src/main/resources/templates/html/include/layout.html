@@ -12,14 +12,7 @@
 					<nav th:replace="include/top :: topFragment"></nav>
 					<div class="container-fluid" layout:fragment="content"></div>
 				</div>
-
-				<footer class="sticky-footer bg-white">
-					<div class="container my-auto">
-						<div class="copyright text-center my-auto">
-							<span>Copyright &copy; Your Website 2021</span>
-						</div>
-					</div>
-				</footer>
+				<th:block th:replace="include/footer :: footerFragment"></th:block>
 			</div>
 		</div>
 		<a class="scroll-to-top rounded" href="javascript:void(0);" onclick="javascript:window.scrollTo(0,0)">
