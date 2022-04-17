@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class LoginValidationException extends IllegalArgumentException{
+public class LoginValidationException extends CustomException {
 	protected String goUrl;
 }

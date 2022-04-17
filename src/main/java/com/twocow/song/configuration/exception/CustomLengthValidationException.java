@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomLengthValidationException extends IllegalArgumentException{
+public class CustomLengthValidationException extends CustomException {
 	protected String message;
 	protected int min;
 	protected int max;

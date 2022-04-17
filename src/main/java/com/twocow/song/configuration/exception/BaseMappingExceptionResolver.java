@@ -28,7 +28,8 @@ public class BaseMappingExceptionResolver extends SimpleMappingExceptionResolver
 
 	@Override
 	protected ModelAndView doResolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-		log.error("doResolveException {}", ex);
+		excludeConsoleWrite(ex);
+
 		ModelAndView mav = new ModelAndView();
 		HandlerMethod handlerMethod = getHandler(handler);
 		RequestConfig requestConfig = handlerMethod.getMethodAnnotation(RequestConfig.class);
@@ -83,6 +84,16 @@ public class BaseMappingExceptionResolver extends SimpleMappingExceptionResolver
 		return mav;
 	}
 
+	/**
+	 * 커스텀 Exception은 콘솔 로그를 찍을 필요가없음으로 제외해야함
+	 * @param ex
+	 */
+	private void excludeConsoleWrite(Exception ex) {
+		if (!(ex instanceof CustomException)) {
+			log.error("doResolveException {}", ex);
+		}
+	}
+
 	private HandlerMethod getHandler(Object handler) {
 		HandlerMethod handlerMethod = null;
 		if (handler instanceof HandlerMethod) {
@@ -101,4 +112,7 @@ public class BaseMappingExceptionResolver extends SimpleMappingExceptionResolver
 		catch (Exception ex) {
 		}
 	}
+
+
+
 }
