@@ -1,6 +1,6 @@
 package com.twocow.song.utils.session;
 
-import com.twocow.song.mvc.vo.user.User;
+import com.twocow.song.mvc.common.vo.user.User;
 import com.twocow.song.utils.servlet.ServletUtils;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package com.twocow.song.configuration.security;
 
-import com.twocow.song.mvc.vo.user.User;
+import com.twocow.song.mvc.common.vo.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

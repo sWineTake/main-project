@@ -1,7 +1,7 @@
 package com.twocow.song.configuration.security;
 
-import com.twocow.song.mvc.repository.user.UserRepository;
-import com.twocow.song.mvc.vo.user.User;
+import com.twocow.song.mvc.admin.repository.user.UserRepository;
+import com.twocow.song.mvc.common.vo.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;

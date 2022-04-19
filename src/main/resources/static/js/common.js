@@ -24,7 +24,7 @@ Ajax.execute = function(url, data, successFunction, option) {
 					alert(Func.get(data, "result").message)
 				}
 				else {
-					successFunction(data);
+					successFunction(Func.get(data, "result"));
 				}
 			}
 			else if (Func.get(data, "error")) {
@@ -148,4 +148,15 @@ Func.pressEnterKey = function(e) {
 		return true;
 	}
 	return false;
+}
+
+/**
+ * CapsLock on/off 여부
+ * @param e
+ */
+Func.isCapsLock = function(e) {
+	if (e.getModifierState("CapsLock")) {
+		return 'Caps Lock이 켜져 있습니다.';
+	}
+	return '';
 }

@@ -1,0 +1,213 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      data-layout-decorate="~{common/include/layout}">
+	<!-- 개별 js -->
+	<th:block data-layout-fragment="script">
+		<script th:src="@{/js/validationUtil.js}"></script>
+		<script th:inline="javascript">
+			function idDoubleCheck(obj) {
+				let userId = $("#userId").val();
+				if (Func.isCheck(userId)) {
+					alert("아이디를 입력해주세요.");
+				}
+				else {
+					if (!$(obj).hasClass("btn-primary")) {
+						Ajax.execute('/api/user/' + userId, null, function() {
+							alert('사용가능한 아이디입니다.');
+							$(obj).removeClass("btn-google");
+							$(obj).addClass("btn-primary ");
+							$(obj).text('ID 확인 완료');
+							$("#isUserIdDoubleCheck").val("Y");
+						})
+					}
+					else {
+						alert("아이디 중복확인이 완료되었습니다.");
+					}
+				}
+			}
+
+			function changeUserId(){
+				$("#btnIdDouble").removeClass("btn-primary");
+				$("#btnIdDouble").addClass("btn-google");
+				$("#btnIdDouble").text('ID 중복 확인');
+				$("#isUserIdDoubleCheck").val("N");
+			}
+
+			function pressPassword(obj) {
+				let pwd = $(obj).val();
+				setValidationMsg(isPasswordPattern(pwd));
+			}
+
+			function pressPasswordCheck(obj) {
+				let pwd = $("#password").val();
+				let pwdChk = $(obj).val();
+				setValidationMsg(isPasswordPatternCheck(pwd, pwdChk));
+			}
+
+			function isDoubleEmailCheck(obj) {
+				const email = $("#email").val();
+				if (Func.isCheck(email)) {
+					alert("Email을 입력해주세요.");
+				}
+				else {
+					if (!$(obj).hasClass("btn-primary")) {
+						Ajax.execute('/api/user/email/' + email, null, function() {
+							alert('사용가능한 Email입니다.');
+							$(obj).removeClass("btn-google");
+							$(obj).addClass("btn-primary ");
+							$(obj).text('Email 확인 완료');
+							$("#isEmailDoubleCheck").val("Y");
+						})
+					}
+					else {
+						alert("Email 중복확인이 완료되었습니다.");
+					}
+				}
+			}
+
+			function pressEmailCheck(obj) {
+				setValidationMsg(isEmailPattern($(obj).val()));
+			}
+
+			function changeEmail() {
+				$("#btnEmailDouble").removeClass("btn-primary");
+				$("#btnEmailDouble").addClass("btn-google");
+				$("#btnEmailDouble").text('Email 중복 확인');
+				$("#isEmailDoubleCheck").val("N");
+			}
+
+			function insertUserInfo() {
+				setValidationMsg('');
+				if (Func.validationCheck($("#userInfo"))) {
+					const userId = $("#userId").val();
+					const password = $("#password").val();
+					const checkPassword = $("#checkPassword").val();
+					const email = $("#email").val();
+
+					if (Func.isNotEmptyAlert($("#isUserIdDoubleCheck").val() != 'Y', "아이디 중복 확인을 진행해주세요.")) return;
+					if (Func.isNotEmptyAlert(isPasswordPattern(password))) return;
+					if (Func.isNotEmptyAlert(isPasswordPatternCheck(password, checkPassword))) return;
+					if (Func.isNotEmptyAlert(isEmailPattern(email))) return;
+					if (Func.isNotEmptyAlert($("#isEmailDoubleCheck").val() != 'Y', "Email 중복 확인을 진행해주세요.")) return;
+
+					Ajax.execute('/api/user', // Func.getObject($("#userInfo"))
+						$("#userInfo").getObject()
+						, function(){
+							alert('정상적으로 회원가입이 완료되었습니다.');
+							location.href = "/user/login";
+						}, 'POST')
+
+				}
+			}
+
+			function setValidationMsg(text) {
+				$("#validatioMsg").text(text);
+			}
+		</script>
+	</th:block>
+
+	<th:block data-layout-fragment="content">
+		<div class="container">
+			<div class="card o-hidden border-0 shadow-lg my-5">
+				<div class="card-body p-0">
+					<!-- Nested Row within Card Body -->
+					<div class="row">
+						<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+						<div class="col-lg-7">
+							<div class="p-5">
+								<div class="text-center">
+									<h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+								</div>
+								<form class="user" id="userInfo" name="userInfo">
+									<div class="form-group row">
+										<div class="col-sm-6 mb-3 mb-sm-0">
+											<input type="text"
+											       maxlength="20"
+											       autocomplete="off"
+											       data-empty-label="아이디를"
+											       onfocus="javascript:changeUserId();"
+											       class="form-control form-control-user"
+											       id="userId"
+											       placeholder="user id">
+											<input type="hidden"
+											       id="isUserIdDoubleCheck"
+											       value="N">
+										</div>
+										<div class="col-sm-6">
+											<a class="btn btn-google btn-user btn-block"
+											   id="btnIdDouble" onclick="javascript:idDoubleCheck(this);">ID 중복 확인</a>
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-sm-6 mb-3 mb-sm-0">
+											<input type="password"
+											       autocomplete="off"
+											       class="form-control form-control-user"
+											       data-empty-label="패스워드를"
+											       onkeyup="javascript:pressPassword(this);"
+											       maxlength="16"
+											       id="password"
+											       placeholder="Password">
+										</div>
+										<div class="col-sm-6">
+											<input type="password"
+											       autocomplete="off"
+											       class="form-control form-control-user"
+											       data-empty-label="패스워드 확인을"
+											       onkeyup="javascript:pressPasswordCheck(this);"
+											       maxlength="16"
+											       id="checkPassword"
+											       placeholder="Repeat Password">
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class="col-sm-6 mb-3 mb-sm-0">
+											<input type="email"
+											       autocomplete="off"
+											       onkeyup="javascript:pressEmailCheck(this);"
+											       onfocus="javascript:changeEmail(this);"
+											       data-empty-label="이메일을"
+											       class="form-control form-control-user"
+											       id="email"
+											       name="email"
+											       placeholder="Email Address">
+											<input type="hidden"
+											       id="isEmailDoubleCheck"
+											       value="N">
+										</div>
+										<div class="col-sm-6">
+											<a class="btn btn-google btn-user btn-block"
+											   id="btnEmailDouble" onclick="javascript:isDoubleEmailCheck(this);">Email 중복 확인</a>
+										</div>
+									</div>
+
+									<div class="password-msg font-color-red">
+										<span id="validatioMsg"></span>
+									</div>
+									<a href="javascript:void(0);"
+										onclick="javascript:insertUserInfo();"
+										class="btn btn-primary btn-user btn-block">
+										Register Account
+									</a>
+									<!--/* <hr>
+									<a href="main.html" class="btn btn-google btn-user btn-block">
+										<i class="fab fa-google fa-fw"></i> Register with Google
+									</a>
+									<a href="main.html" class="btn btn-facebook btn-user btn-block">
+										<i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+									</a> */-->
+								</form>
+								<hr>
+								<div class="text-center">
+									<a class="small" href="forgot-password.html">Forgot Password?</a>
+								</div>
+								<div class="text-center">
+									<a class="small" th:href="@{/templates/html/common/user/login}">Already have an account? Login!</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</th:block>
+</html>

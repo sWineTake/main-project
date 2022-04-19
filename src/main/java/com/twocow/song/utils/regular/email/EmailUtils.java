@@ -1,6 +1,6 @@
 package com.twocow.song.utils.regular.email;
 
-import com.twocow.song.mvc.vo.ServiceResponseData;
+import com.twocow.song.mvc.common.vo.ServiceResponseData;
 import com.twocow.song.utils.messages.MessageConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

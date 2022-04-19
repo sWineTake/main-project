@@ -10,8 +10,8 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
-// @Configuration
-// @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 7200)
+@Configuration
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 7200)
 public class RedisConfig {
 
 	@Value("${spring.redis.host}")
@@ -31,7 +31,7 @@ public class RedisConfig {
 	@Bean
 	public RedisTemplate<?, ?> redisTemplate() {
 		RedisTemplate<byte[], byte[]> redisTemplate = new RedisTemplate<>();
-		//redisTemplate.setConnectionFactory(redisConnectionFactory());
+		redisTemplate.setConnectionFactory(redisConnectionFactory());
 		return redisTemplate;
 	}
 }

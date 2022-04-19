@@ -45,7 +45,7 @@ public class TraceAop {
 	 * @return
 	 * @throws Throwable
 	 */
-	@Around("execution(* com.twocow.song.mvc.repository..*(..))")
+	@Around("execution(* com.twocow.song.mvc.admin.repository..*(..))")
 	public Object queryExecute(ProceedingJoinPoint joinPoint) throws Throwable {
 		log.info(joinPoint.toString());
 		Object result = joinPoint.proceed();
