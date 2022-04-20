@@ -2,11 +2,13 @@ package com.twocow.song.utils.session;
 
 import com.twocow.song.mvc.common.vo.user.User;
 import com.twocow.song.utils.servlet.ServletUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SessionUtils {
-	private final String SESSION_NAME_MEMBER = "SESSION_MEMBER";
+	private final static String SESSION_NAME_MEMBER = "SESSION_MEMBER";
 
 	public void setUser(User user) {
 		ServletUtils.getSession().setAttribute(SESSION_NAME_MEMBER, user);
@@ -26,6 +28,14 @@ public class SessionUtils {
 			return false;
 		}
 		return true;
+	}
+
+	public static String getUserId() {
+		User user = (User) ServletUtils.getSession().getAttribute(SESSION_NAME_MEMBER);
+		if (ObjectUtils.isEmpty(user) || StringUtils.isBlank(user.getUserId())) {
+			return "";
+		}
+		return user.getUserId();
 	}
 
 }
