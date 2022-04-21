@@ -14,7 +14,8 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.List;
 
 @Slf4j
 public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
@@ -24,6 +25,9 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 
 	@Autowired
 	private SessionUtils sessionUtils;
+
+	// 허가한 IP
+	private final static List<String> permissionIpList = Arrays.asList("192.168.0.119");
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -65,10 +69,12 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 			}
 		}
 		else {
-			response.sendRedirect("/error");
-			return false;
+			// 어노테이션이 없는경우 외부에서 호출한 IP가 허가 아이피인지 확인
+			if (!permissionIpList.stream().anyMatch(addr -> addr.equals(request.getRemoteAddr()))) {
+				response.sendRedirect("/error");
+				return false;
+			}
 		}
-
 		return AsyncHandlerInterceptor.super.preHandle(request, response, handler);
 	}
 }

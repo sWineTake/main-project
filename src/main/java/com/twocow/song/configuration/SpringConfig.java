@@ -9,6 +9,7 @@ import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
@@ -85,6 +86,20 @@ public class SpringConfig implements WebMvcConfigurer, WebMvcRegistrations {
 	@Bean
 	MappingJackson2JsonView jsonView(){
 		return new MappingJackson2JsonView();
+	}
+
+	/**
+	 * Cors 크로스 도메인 체크를 위한 도메인 화이트 리스트
+	 * @param registry
+	 */
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/**") // 호출 URL QueryString 경로
+				.allowedOrigins("*") // 호출할 서버 URL 오리진 경로 ,로 여러개 입력가능
+				// .allowedHeaders("*") // 어떤 헤더들을 허용할 것인지
+				.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+				.allowCredentials(false) // 쿠키 요청을 허용한다(다른 도메인 서버에 인증하는 경우에만 사용해야하며, true 설정시 보안상 이슈가 발생할 수 있다)
+				.maxAge(3600);
 	}
 
 }
