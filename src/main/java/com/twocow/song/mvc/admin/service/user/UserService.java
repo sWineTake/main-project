@@ -79,18 +79,8 @@ public class UserService {
 		userInfo.setPassword("");
 		sessionUtils.setUser(userInfo);
 
-		ServiceResponseData retResponse = new ServiceResponseData();
-
-		Optional<Role> userRole = Stream.of(Role.values())
-				.filter(role -> role.getRole().equals(userInfo.getRole()))
-				.findFirst();
-		// 권한을 못찾음 -> 에러 (모든 계정은 권한이 있어야함)
-		if (userRole.isEmpty())
-			return new ServiceResponseData(true, "로그인시 계정의 문제가 발생하였습니다. 관리자한테 문의 바랍니다.");
-
-		return userRole.get().getLevel() == 1
-				? new ServiceResponseData("/main") // 일반사용자 로그인
-				: new ServiceResponseData("/admin/main") // 어드민 로그인
-				;
+		return SessionUtils.getUserRoleLevel() == 1
+			? new ServiceResponseData("/main") // 일반사용자 로그인
+			: new ServiceResponseData("/admin/main"); // 어드민 로그인
 	}
 }

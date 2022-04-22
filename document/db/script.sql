@@ -24,6 +24,36 @@ create table user
 )
 comment '유저 정보';
 alter table user add primary key (user_id);
+INSERT INTO study_db.user (user_id, password, email, role, insert_dt, delete_dt, login_dt, wrong_cnt, use_yn) VALUES ('admin001', '$2a$10$TfMsxLCKa8YcioPlkOh02uA2MTyReTcugC6v59d8YoIcuDrjzfn1y', 'woosong@naver.com', 'R003', '2022-04-11 10:23:53', null, null, 0, 'Y');
+INSERT INTO study_db.user (user_id, password, email, role, insert_dt, delete_dt, login_dt, wrong_cnt, use_yn) VALUES ('user1234', '$2a$10$XH09U37pBeH985V0gRPZrO3xtZL.6L.bw9XojbCyl8bBrln6Av.TK', 'test1234@naver.com', 'R000', '2022-04-22 08:14:54', null, null, 0, 'Y');
+
+create table bbs_master
+(
+	code varchar(10) not null comment '게시판 코드'
+		primary key,
+	title varchar(30) null,
+	insert_dt datetime default CURRENT_TIMESTAMP not null,
+	delete_dt datetime null,
+	use_yn varchar(2) default 'Y' not null
+)
+comment '게시판 관리';
+
+create table board
+(
+	board_seq int auto_increment comment '시퀀스'
+		primary key,
+	board_code varchar(30) not null comment '게시판 분류 코드(bbs_master)',
+	title varchar(100) not null comment '제목',
+	content text not null comment '내용',
+	writer varchar(20) not null comment '글쓴이',
+	writer_ip varchar(30) not null comment '글쓴이 IP',
+	insert_dt datetime default CURRENT_TIMESTAMP null comment '글 생성 일자',
+	delete_dt datetime null comment '글 삭제 일자',
+	up_count int default 0 null comment '추천수',
+	use_yn varchar(2) null comment '사용여부'
+)
+comment '게시판 ';
+
 
 
 

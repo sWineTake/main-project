@@ -2,6 +2,7 @@ package com.twocow.song.mvc.common.controller.user;
 
 import com.twocow.song.configuration.annotation.RequestConfig;
 import com.twocow.song.enums.Menu;
+import com.twocow.song.mvc.common.vo.user.User;
 import com.twocow.song.utils.session.SessionUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,9 @@ public class LoginController {
 	@GetMapping("/login")
 	@RequestConfig(menu = Menu.USER_LOGIN)
 	public String login() {
-		if (sessionUtils.isLogin()) return "redirect:/main";
+		if (sessionUtils.isLogin()) {
+			return sessionUtils.getUserRoleLevel() > 1 ? "redirect:/admin/main" : "/user/main";
+		}
 		return "/common/user/login";
 	}
 
@@ -33,7 +36,7 @@ public class LoginController {
 		if (sessionUtils.isLogin()) {
 			sessionUtils.delUser();
 		}
-		return "redirect:/common/user/login";
+		return "redirect:/user/login";
 	}
 
 	@GetMapping("/form")

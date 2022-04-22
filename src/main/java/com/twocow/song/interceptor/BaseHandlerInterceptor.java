@@ -10,6 +10,7 @@ import com.twocow.song.utils.session.SessionUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.AsyncHandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +27,8 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 	@Autowired
 	private SessionUtils sessionUtils;
 
-	// 허가한 IP
-	private final static List<String> permissionIpList = Arrays.asList("192.168.0.119");
+	@Value("${cors.permission.ip}")
+	private String permissionIpAddr;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -70,6 +71,7 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 		}
 		else {
 			// 어노테이션이 없는경우 외부에서 호출한 IP가 허가 아이피인지 확인
+			List<String> permissionIpList = Arrays.asList(permissionIpAddr);
 			if (!permissionIpList.stream().anyMatch(addr -> addr.equals(request.getRemoteAddr()))) {
 				response.sendRedirect("/error");
 				return false;

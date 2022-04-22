@@ -17,6 +17,11 @@
 3. AOP 공통 처리, Interceptor
 
 ### 프로젝트 정보
+> 계정 정보
+> > 어드민 : admin001 / test1234@@
+>
+> > 일반 : user1234 / test1234@@
+
 > DataBase
 > > DB 연결 테스트 서비스 제공 (MySqlConnection.java)
 > 
