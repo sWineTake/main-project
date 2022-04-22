@@ -10,6 +10,8 @@ public enum Menu {
 	COMMON_MAIN("COMMON_MAIN", "메인", Role.R000, false),
 	MY_INFO("MY_INFO", "MyInfo", Role.R000, true),
 	BOARD_MANAGEMENT("BOARD_MANAGEMENT", "BoardManagement", Role.R000, true),
+
+
 	USER_LOGIN("USER_LOGIN", "로그인" , Role.R000, false),
 	USER_LOGOUT("USER_LOGOUT", "로그아웃" , Role.R000, false),
 	USER_FORM("USER_JOIN", "회원가입", Role.R000, false),

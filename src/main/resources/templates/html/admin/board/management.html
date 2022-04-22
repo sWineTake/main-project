@@ -7,7 +7,13 @@
 </th:block>
 <th:block data-layout-fragment="content">
 	<div class="container-fluid">
-		<h1 class="h3 mb-2 text-gray-800">게시판 관리</h1>
+		<!-- Page Heading -->
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">게시판 관리</h1>
+			<a href="/admin/board/management/write"
+			   class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">글쓰기</a>
+		</div>
+
 		<div class="card shadow mb-4">
 			<div class="card-body">
 				<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -47,60 +53,21 @@
 
 					<div class="row">
 						<div class="col-sm-12">
-							<table class="table table-bordered dataTable"
-							       id="dataTable"
-							       width="100%"
-							       cellspacing="0"
-							       role="grid"
-							       aria-describedby="dataTable_info"
-							       style="width: 100%;">
+							<table class="table table-bordered dataTable" id="dataTable" role="grid" style="width: 100%;">
 								<thead>
-								<tr role="row">
-									<th class="sorting sorting_asc"
-									    tabindex="0"
-									    aria-controls="dataTable"
-									    rowspan="1"
-									    colspan="1"
-									    aria-sort="ascending"
-									    aria-label="Name: activate to sort column descending"
-									    style="width: 15px;">No
-									</th>
-									<th class="sorting"
-									    tabindex="0"
-									    aria-controls="dataTable"
-									    rowspan="1" colspan="1"
-									    aria-label="Position: activate to sort column ascending"
-									    style="width: 45px;">분류
-									</th>
-									<th class="sorting" tabindex="0"
-									    aria-controls="dataTable"
-									    rowspan="1" colspan="1"
-									    aria-label="Office: activate to sort column ascending"
-									    style="width: 110.011px;">제목
-									</th>
-									<th class="sorting"
-									    tabindex="0"
-									    aria-controls="dataTable"
-									    rowspan="1" colspan="1"
-									    aria-label="Age: activate to sort column ascending"
-									    style="width: 36.0114px;">글쓴이(IP)
-									</th>
-									<th class="sorting" tabindex="0"
-									    aria-controls="dataTable"
-									    rowspan="1" colspan="1"
-									    aria-label="Start date: activate to sort column ascending"
-									    style="width: 94.0114px;">댓글 개수 / 추천 수
-									</th>
-									<th class="sorting" tabindex="0"
-									    aria-controls="dataTable" rowspan="1"
-									    colspan="1" aria-label="Salary: activate to sort column ascending"
-									    style="width: 88.0114px;">등록 일자
-									</th>
-								</tr>
+									<tr role="row">
+										<th style="width: 10%;">No</th>
+										<th style="width: 10%;">분류</th>
+										<th style="width: 25%;">제목</th>
+										<th style="width: 15%;">글쓴이(IP)</th>
+										<th style="width: 15%;">댓글 개수 / 추천 수</th>
+										<th style="width: 15%;">등록 일자</th>
+										<th style="width: 10%;">사용 여부</th>
+									</tr>
 								</thead>
 								<tbody>
-									<tr class="odd" th:if="${#lists.isEmpty(list)}">
-										<td colspan="6">등록된 게시글이 없습니다.</td>
+									<tr class="odd" th:if="${#lists.isEmpty(list)}" style="text-align: center;">
+										<td colspan="7">등록된 게시글이 없습니다.</td>
 									</tr>
 									<tr class="odd" th:each="data : ${list}">
 										<td th:text="${data.boardSeq}"></td>
@@ -109,6 +76,15 @@
 										<td th:text="${data.writerIp}"></td>
 										<td th:text="${data.upCount}"></td>
 										<td th:text="${data.insertDt}"></td>
+										<td>
+											<!--th:text="${data.uesYn}" -->
+											<select name="dataTable_length"
+											        aria-controls="dataTable"
+											        class="custom-select custom-select-sm form-control form-control-sm">
+												<option value="Y" th:selected="${data.uesYn} == 'Y'"></option>
+												<option value="N" th:selected="${data.uesYn} != 'Y'"></option>
+											</select>
+										</td>
 									</tr>
 								</tbody>
 							</table>

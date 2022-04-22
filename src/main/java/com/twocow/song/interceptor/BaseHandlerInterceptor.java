@@ -30,6 +30,9 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 	@Value("${cors.permission.ip}")
 	private String permissionIpAddr;
 
+	@Value("${cors.permission.ip2}")
+	private String permissionIpAddr2;
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String requestURI = request.getRequestURI();
@@ -71,7 +74,7 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 		}
 		else {
 			// 어노테이션이 없는경우 외부에서 호출한 IP가 허가 아이피인지 확인
-			List<String> permissionIpList = Arrays.asList(permissionIpAddr);
+			List<String> permissionIpList = Arrays.asList(permissionIpAddr, permissionIpAddr2);
 			if (!permissionIpList.stream().anyMatch(addr -> addr.equals(request.getRemoteAddr()))) {
 				response.sendRedirect("/error");
 				return false;
