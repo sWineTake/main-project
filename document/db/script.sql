@@ -27,22 +27,24 @@ alter table user add primary key (user_id);
 INSERT INTO study_db.user (user_id, password, email, role, insert_dt, delete_dt, login_dt, wrong_cnt, use_yn) VALUES ('admin001', '$2a$10$TfMsxLCKa8YcioPlkOh02uA2MTyReTcugC6v59d8YoIcuDrjzfn1y', 'woosong@naver.com', 'R003', '2022-04-11 10:23:53', null, null, 0, 'Y');
 INSERT INTO study_db.user (user_id, password, email, role, insert_dt, delete_dt, login_dt, wrong_cnt, use_yn) VALUES ('user1234', '$2a$10$XH09U37pBeH985V0gRPZrO3xtZL.6L.bw9XojbCyl8bBrln6Av.TK', 'test1234@naver.com', 'R000', '2022-04-22 08:14:54', null, null, 0, 'Y');
 
-create table bbs_master
+create table comm_code
 (
-	code varchar(10) not null comment '게시판 코드'
-		primary key,
+	master_code varchar(20) not null,
+	code varchar(10) not null comment '게시판 코드',
 	title varchar(30) null,
 	insert_dt datetime default CURRENT_TIMESTAMP not null,
 	delete_dt datetime null,
-	use_yn varchar(2) default 'Y' not null
-)
-comment '게시판 관리';
+	ord_no int default 0 null comment '노출 순서',
+	use_yn varchar(2) default 'Y' not null,
+	constraint comm_code_pk
+		unique (master_code, code)
+)comment '공통 코드 관리 테이블';
 
 create table board
 (
 	board_seq int auto_increment comment '시퀀스'
 		primary key,
-	board_code varchar(30) not null comment '게시판 분류 코드(bbs_master)',
+	board_code varchar(30) not null comment '게시판 분류 코드(comm_code)',
 	title varchar(100) not null comment '제목',
 	content text not null comment '내용',
 	writer varchar(20) not null comment '글쓴이',

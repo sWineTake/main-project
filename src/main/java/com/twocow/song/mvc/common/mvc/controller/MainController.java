@@ -1,4 +1,4 @@
-package com.twocow.song.mvc.common.controller;
+package com.twocow.song.mvc.common.mvc.controller;
 
 import com.twocow.song.configuration.annotation.RequestConfig;
 import com.twocow.song.enums.Menu;

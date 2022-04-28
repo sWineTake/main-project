@@ -160,3 +160,4 @@ Func.isCapsLock = function(e) {
 	}
 	return '';
 }
+

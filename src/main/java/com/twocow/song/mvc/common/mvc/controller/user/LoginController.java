@@ -1,8 +1,7 @@
-package com.twocow.song.mvc.common.controller.user;
+package com.twocow.song.mvc.common.mvc.controller.user;
 
 import com.twocow.song.configuration.annotation.RequestConfig;
 import com.twocow.song.enums.Menu;
-import com.twocow.song.mvc.common.vo.user.User;
 import com.twocow.song.utils.session.SessionUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
