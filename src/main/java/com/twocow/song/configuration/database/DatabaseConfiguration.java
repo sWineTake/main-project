@@ -50,8 +50,10 @@ public class DatabaseConfiguration {
 		dataSource.setUsername(env.getProperty("spring.datasource.username"));
 		dataSource.setPassword(env.getProperty("spring.datasource.password"));
 		dataSource.setDefaultAutoCommit(false);
-		dataSource.setPoolPingEnabled(true);
-		dataSource.setPoolPingQuery("SELECT 1");
+
+		// MyBatis에서 일정 시간을 기준으로 지속적으로 유효한 커넥션 확인을 하기위해서 설정하는 값입니다.
+		// dataSource.setPoolPingEnabled(false);
+		// dataSource.setPoolPingQuery("SELECT 1");
 
 		log.info("DataBase : {}", dataSource);
 		return dataSource;

@@ -68,7 +68,7 @@ Func.validationCheck = function(form) {
  * @param value
  */
 Func.isNotEmptyAlert = function(value, msg) {
-	if (!Func.isCheck(value)) {
+	if (Func.isCheck(value)) {
 		if (typeof value == 'boolean') {
 			if (value) {
 				arguments.length >= 2 ? alert(msg) : alert(value);
@@ -161,3 +161,22 @@ Func.isCapsLock = function(e) {
 	return '';
 }
 
+/**
+ * 객체의 유무 존재 확인
+ */
+Func.isObject = function(obj) {
+	if ($(obj).length > 0) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * 객체의 Read only 설정
+ */
+Func.setReadonly = function(obj) {
+	$(obj).attr("readonly",true);
+}
+Func.delReadOnly = function(obj) {
+	$(obj).removeAttr("readonly");
+}

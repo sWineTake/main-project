@@ -5,12 +5,13 @@ import com.twocow.song.mvc.admin.vo.board.BoardPageInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 @Mapper
 @Repository
 public interface BoardRepository {
 
-	LinkedList<Board> getBoardInfo(BoardPageInfo boardPageInfo);
+	ArrayList<Board> getBoardInfo(BoardPageInfo boardPageInfo);
 
 }

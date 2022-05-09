@@ -3,3 +3,15 @@
 
 .font-color-red{color:red;}
 .font-color-black{color:black;}
+
+.btn-full {
+	width : 100% !important;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+.title-bold {
+	font-weight: bold !important;
+}

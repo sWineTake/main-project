@@ -1,11 +1,10 @@
 /**
- * 숫자만 입력여부
+ * input number에 숫자 길이 설정
  * @param event
  * @returns {boolean}
  */
-function checkNumber(event) {
-	if(event.key >= 0 && event.key <= 9) {
-		return true;
+function maxLengthCheck(object){
+	if (object.value.length > object.maxLength){
+		object.value = object.value.slice(0, object.maxLength);
 	}
-	return false;
 }

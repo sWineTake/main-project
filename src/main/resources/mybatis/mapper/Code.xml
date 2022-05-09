@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.twocow.song.mvc.admin.repository.code.CodeRepository">
+
+	<select id="getCommCode" parameterType="com.twocow.song.mvc.admin.vo.code.CommCodePageInfo"
+		resultType="com.twocow.song.mvc.admin.vo.code.CommCode">
+		SELECT  A.MASTER_CODE,
+				A.CODE,
+				A.TITLE,
+				A.INSERT_DT,
+				A.DELETE_DT,
+				A.ORD_NO,
+				A.USE_YN
+		  FROM COMM_CODE A
+			   INNER JOIN ( SELECT MASTER_CODE,
+								   CODE
+							  FROM COMM_CODE
+			                <where>
+				                <if test="code != ''">
+									AND CODE = #{code}
+				                </if>
+			                </where>
+							 LIMIT ${startPage} , ${perPage}
+			               ) B
+			ON A.MASTER_CODE = B.MASTER_CODE
+		   AND A.CODE = B.CODE
+	</select>
+</mapper>
