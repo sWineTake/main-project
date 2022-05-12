@@ -11,20 +11,4 @@
 		   AND MASTER_CODE = #{masterCode}
 		 ORDER BY ORD_NO DESC
 	</select>
-
-	<insert id="insertCommCode" parameterType="com.twocow.song.mvc.admin.vo.code.CommCode">
-		INSERT INTO COMM_CODE (
-			MASTER_CODE,
-			CODE,
-			TITLE,
-			ORD_NO
-		)
-		VALUES (
-			#{masterCode},
-			#{code},
-			#{title},
-			#{ordNo}
-		)
-	</insert>
-
 </mapper>

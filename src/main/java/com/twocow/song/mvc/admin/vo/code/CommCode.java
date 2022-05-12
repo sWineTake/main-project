@@ -14,4 +14,6 @@ public class CommCode {
 	private SimpleDateFormat deleteDt;
 	private String ordNo;
 	private String useYn;
+	private String originMasterCode;
+	private String originCode;
 }

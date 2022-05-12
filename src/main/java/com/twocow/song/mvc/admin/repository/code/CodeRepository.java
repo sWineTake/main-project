@@ -12,4 +12,10 @@ import java.util.ArrayList;
 public interface CodeRepository {
 
 	ArrayList<CommCode> getCommCode(CommCodePageInfo commCodePageInfo);
+
+	int insertCommCode(CommCode commCode);
+
+	int getCodeCheck(CommCode commCode);
+
+	int updateCommCode(CommCode commCode);
 }

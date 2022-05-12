@@ -45,25 +45,42 @@
 
 		function _save(obj) {
 			const target = $(obj).closest('tr');
+			let data = validationCheck(target);
+			if (typeof data == 'boolean') return;
+			Ajax.execute('/api/code', data, function(result) {
+				alert(result.message);
+			});
+		}
+
+		function _update(obj) {
+			const target = $(obj).closest('tr');
+			let data = validationCheck(target);
+			if (typeof data == 'boolean') return;
+			data['originMasterCode'] = $(target).find("input[name='originMasterCode']").val();
+			data['originCode'] = $(target).find("input[name='originCode']").val();
+
+			Ajax.execute('/api/code', data, function(result) {
+				alert(result.message);
+			}, 'POST');
+		}
+
+		function validationCheck(target) {
 			const _masterCode = $(target).find("input[name='masterCode']");
 			const _code = $(target).find("input[name='code']");
 			const _title = $(target).find("input[name='title']");
 			const _ordNo = $(target).find("input[name='ordNo']");
 
-			if (Func.isNotEmptyAlert(_masterCode.val(), 'MASTER CODE를 입력해주세요.')) return;
-			if (Func.isNotEmptyAlert(_code.val(), 'CODE를 입력해주세요.')) return;
-			if (Func.isNotEmptyAlert(_title.val(), '제목을 입력해주세요.')) return;
-			if (Func.isNotEmptyAlert(_ordNo.val(), '노출 순서를 입력해주세요.')) return;
+			if (Func.isNotEmptyAlert(_masterCode.val(), 'MASTER CODE를 입력해주세요.')) return true;
+			if (Func.isNotEmptyAlert(_code.val(), 'CODE를 입력해주세요.')) return true;
+			if (Func.isNotEmptyAlert(_title.val(), '제목을 입력해주세요.')) return true;
+			if (Func.isNotEmptyAlert(_ordNo.val(), '노출 순서를 입력해주세요.')) return true;
 
 			let data = {};
 			data['masterCode'] = _masterCode.val();
 			data['code'] = _code.val();
 			data['title'] = _title.val();
 			data['ordNo'] = _ordNo.val();
-
-			Ajax.execute('/api/code', data, function(result) {
-				alert(result.message);
-			}, 'POST');
+			return data;
 		}
 
 	</script>
@@ -119,11 +136,28 @@
 									</tr>
 								</thead>
 								<tbody id="tbody-content">
-									<tr class="odd no-data-row" th:if="${#lists.isEmpty(codeList)}" style="text-align: center;">
+									<tr class="odd no-data-row" th:if="${#lists.isEmpty(commCode)}" style="text-align: center;">
 										<td colspan="7">등록된 코드가 없습니다.</td>
 									</tr>
-									<tr class="odd" th:each="data : ${codeList}">
-
+									<tr class="odd" th:each="data : ${commCode}">
+										<input type="hidden" name="originMasterCode" th:value="${data.masterCode}">
+										<input type="hidden" name="originCode" th:value="${data.code}">
+										<td></td>
+										<td><input type="text" data-empty-label="Master Code를" class="form-control bg-light border-0 small"
+										           name="masterCode" th:value="${data.masterCode}" readonly></td>
+										<td><input type="text" data-empty-label="Code를" class="form-control bg-light border-0 small"
+										           name="code" th:value="${data.code}" readonly></td>
+										<td><input type="text" data-empty-label="제목을" class="form-control bg-light border-0 small"
+										           name="title" th:value="${data.title}"></td>
+										<td><input type="text" data-empty-label="노출 순서를" class="form-control bg-light border-0 small"
+										           name="ordNo" th:value="${data.ordNo}"></td>
+										<td>
+											<select name="useYn" class="btn-full custom-select custom-select-sm form-control form-control-sm">`;
+												<option value="Y" th:selected="${data.useYn} == 'Y'">사용</option>
+												<option value="N" th:selected="${data.useYn} == 'N'">미사용</option>
+											</select>
+										</td>
+										<td><button class="btn btn-full btn-primary" onclick="_update(this);">저장</button></td>
 									</tr>
 								</tbody>
 							</table>

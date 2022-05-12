@@ -1,5 +1,11 @@
 var Ajax = {};
 var Func = {};
+var XSRF_TOKEN = '';
+const XSRF_TOKEN_NAME = 'X-XSRF-TOKEN';
+
+$(function() {
+	XSRF_TOKEN = Func.getCookie('XSRF-TOKEN');
+})
 
 /**
  * 기본 Ajax 템플릿
@@ -11,11 +17,15 @@ var Func = {};
  */
 Ajax.execute = function(url, data, successFunction, option) {
 	option = option == null ? "GET" : option;
+	data = option == "GET" ? data : JSON.stringify(data);
 	$.ajax({
 		type : option,
 		async : true,
 		url : url,
-		data : JSON.stringify(data),
+		data : data,
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(XSRF_TOKEN_NAME, XSRF_TOKEN);
+		},
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success : function(data) {
@@ -136,6 +146,24 @@ Func.delLocalStorage = function(key) {
 }
 Func.getLocalStorage = function(key) {
 	return localStorage.getItem(key);
+}
+
+/**
+ * Spring Security 설정 - 헤더에서 쿠키 이름으로 저장된 쿠키 조회
+ */
+Func.getCookie = function (cookieName) {
+	cookieName = cookieName + '=';
+	let cookieData = document.cookie;
+	let start = cookieData.indexOf(cookieName);
+	var cookieValue = '';
+	if (start != -1) {
+		start += cookieName.length;
+		var end = cookieData.indexOf(';', start);
+		if (end == -1) end = cookieData.length;
+		cookieValue = cookieData.substring(start, end);
+	}
+	// escape를 통해서 만들어진 URI 이스케이핑을 디코드
+	return unescape(cookieValue);
 }
 
 /**

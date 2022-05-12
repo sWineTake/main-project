@@ -1,6 +1,5 @@
 package com.twocow.song.mvc.common.mvc.repository;
 
-import com.twocow.song.mvc.admin.vo.code.CommCode;
 import com.twocow.song.mvc.common.vo.Code;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -11,6 +10,4 @@ import java.util.ArrayList;
 @Repository
 public interface CommonRepository {
 	ArrayList<Code> getCode(String masterCode);
-
-	int insertCommCode(CommCode commCode);
 }

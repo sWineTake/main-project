@@ -26,5 +26,37 @@
 			               ) B
 			ON A.MASTER_CODE = B.MASTER_CODE
 		   AND A.CODE = B.CODE
+		 ORDER BY A.MASTER_CODE
 	</select>
+
+	<insert id="insertCommCode" parameterType="com.twocow.song.mvc.admin.vo.code.CommCode">
+		INSERT INTO COMM_CODE (
+			MASTER_CODE,
+			CODE,
+			TITLE,
+			ORD_NO
+		)
+		VALUES (
+	       #{masterCode},
+	       #{code},
+	       #{title},
+	       #{ordNo}
+        )
+	</insert>
+
+	<select id="getCodeCheck" resultType="int"
+	        parameterType="com.twocow.song.mvc.admin.vo.code.CommCode">
+		SELECT COUNT(1) AS CNT
+		  FROM COMM_CODE
+		 WHERE USE_YN = 'Y'
+		   AND MASTER_CODE = #{masterCode}
+		   AND CODE = #{code}
+	</select>
+
+	<update id="updateCommCode" parameterType="com.twocow.song.mvc.admin.vo.code.CommCode">
+		UPDATE COMM_CODE
+		   SET TITLE = #{title}, ORD_NO = ${ordNo}
+		 WHERE MASTER_CODE = #{masterCode}
+		   AND CODE = #{code}
+	</update>
 </mapper>

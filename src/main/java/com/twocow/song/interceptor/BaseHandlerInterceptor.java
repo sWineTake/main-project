@@ -64,7 +64,12 @@ public class BaseHandlerInterceptor implements AsyncHandlerInterceptor {
 				request.setAttribute("menu", requestConfig.menu());
 			}
 			else if (ObjectUtils.isNotEmpty(apiRequestConfig)) { // API 호출
-
+				if (apiRequestConfig.login()) {
+					if (!sessionUtils.isLogin()) {
+						request.setAttribute("menu", Menu.USER_LOGIN);
+						throw new LoginValidationException(requestURI);
+					}
+				}
 			}
 			else {
 				// Todo) 컨틀롤러에 맵핑된 RequestConfig가 없을경우 잘못된 요청으로 판단할것인지

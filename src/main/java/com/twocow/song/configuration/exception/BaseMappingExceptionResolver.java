@@ -46,7 +46,7 @@ public class BaseMappingExceptionResolver extends SimpleMappingExceptionResolver
 			} else if (ex instanceof LoginValidationException) {
 				setMessage(messageConfig.getMessage("error.not-login.msg"), response);
 				mav.addObject("goUrl", ((LoginValidationException) ex).getGoUrl());
-				mav.setViewName("/user/login");
+				mav.setViewName("/common/user/login");
 			} else {
 				log.info("!!!!!ERROR MISS MATCH!!!!! --- !!!ERROR DIVISION REQUEST!!!");
 				log.info("ERROR TYPE : {}", ex.toString());

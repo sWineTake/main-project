@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * 스프링 시큐리티를 사용은 하지만 url 처리는 BaseHandlerInterceptor에서 작동합니다.
@@ -19,12 +20,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// 크로스 도메인 여부
-		http.csrf().disable();
-
 		// 스프링 시큐리티에서 http 통신에서는 헤더값에 인증값이 필요
 		// 헤더값에 인증여부 사용 여부
-		http.headers().frameOptions().disable();
+		http.csrf()
+			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
 		// String R002 = Role.R002.getRole();
 		// String R003 = Role.R003.getRole();
