@@ -1,6 +1,5 @@
 package com.twocow.song.mvc.common.vo.user;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -15,6 +14,7 @@ import java.sql.Timestamp;
 // JVM의 메모리에서만 상주되어있는 객체 데이터를 그대로 영속화가 필요할 때 직렬화를 사용합니다.
 // 시스템이 종료되더라도 없어지지 않는 장점을 가지며 영속화된 데이터이기때문에 네트워크로 전송이 가능합니다.
 // 언제든지 필요할때 직렬화된 데이트를 가져와 역직렬화를 하여 객체를 바로 사용할수있습니다.
+@Builder
 public class User implements Serializable {
 	private String userId;
 	private String password;

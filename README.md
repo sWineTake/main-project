@@ -1,20 +1,10 @@
 # main-project
 
-### 프로젝트 규칙
-**--** interface default는 @implSpec 설명 적어두기</br>
-**--** 모든 테스트는 크롬기반에서 테스트를 진행하였습니다.</br>
-
-
-### 프로젝트 나의 규칙
-**--** 모르는 코드는 사용하지않습니다.</br>
-**--** 이해가 되지않으면 사용하지않습니다.</br>
-**--** 복붙을 사용하지않습니다.</br>
-
-
 ### project-info
 1. DB : mysql(MyBatis)
 2. template : Bootstrap
 3. AOP 공통 처리, Interceptor
+4. redis 세션 처리
 
 ### 프로젝트 정보
 > 계정 정보

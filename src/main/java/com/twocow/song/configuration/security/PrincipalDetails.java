@@ -1,16 +1,20 @@
 package com.twocow.song.configuration.security;
 
 import com.twocow.song.mvc.common.vo.user.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * 시큐리티 User 객체 정보 설정
  */
-public class PrincipalDetails implements UserDetails {
+@Getter
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	private User user;
 	public PrincipalDetails(User user) {
@@ -56,5 +60,15 @@ public class PrincipalDetails implements UserDetails {
 		// 현재시간 - 로그인 시간 => 1년 초과 시 return false;
 		// user.getLoginDate();
 		return true;
+	}
+
+	@Override
+	public String getName() {
+		return null;
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		return null;
 	}
 }

@@ -15,3 +15,9 @@
 .title-bold {
 	font-weight: bold !important;
 }
+
+.fa-naver:before {
+	font-family: Arial; /* your font family here! */
+	font-weight: bold;
+	content: 'N';
+}

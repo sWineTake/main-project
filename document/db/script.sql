@@ -36,14 +36,12 @@ create table comm_code
 	delete_dt datetime null,
 	ord_no int default 0 null comment '노출 순서',
 	use_yn varchar(2) default 'Y' not null,
-	constraint comm_code_pk
-		unique (master_code, code)
+	constraint comm_code_pk unique (master_code, code)
 )comment '공통 코드 관리 테이블';
 
 create table board
 (
-	board_seq int auto_increment comment '시퀀스'
-		primary key,
+	board_seq int auto_increment comment '시퀀스' primary key,
 	board_code varchar(30) not null comment '게시판 분류 코드(comm_code)',
 	title varchar(100) not null comment '제목',
 	content text not null comment '내용',
