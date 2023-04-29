@@ -1,6 +1,6 @@
 package com.playground.song.utils.regular.email;
 
-import com.playground.song.mvc.common.vo.ServiceResponseData;
+import com.playground.song.mvc.mvc.common.dto.ServiceResponseData;
 import com.playground.song.utils.messages.MessageConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

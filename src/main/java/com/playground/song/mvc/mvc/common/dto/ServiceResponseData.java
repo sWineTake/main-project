@@ -1,4 +1,4 @@
-package com.playground.song.mvc.common.vo;
+package com.playground.song.mvc.mvc.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

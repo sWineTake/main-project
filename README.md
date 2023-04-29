@@ -14,6 +14,7 @@
 > DataBase
 > > DB 트랜잭션 관리 Service단에서 메소드 호출시 이름으로 트랜잭션 관리됨
 > 
+> > DatabaseConfiguration 파일 참고
 
 > log
 > > AOP에서 xml실행전 클래스명.id 기록

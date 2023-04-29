@@ -16,6 +16,4 @@ public @interface ApiRequestConfig {
 	 * 로그인 여부
 	 * */
 	boolean login() default false;
-
-
 }
