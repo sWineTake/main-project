@@ -2,7 +2,24 @@
 <!DOCTYPE mapper
 		PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.playground.song.mvc.mvc.main.MainRepository">
+<mapper namespace="com.playground.song.mvc.main.MainRepository">
+
+	<insert id="insertMember" parameterType="com.playground.song.mvc.main.dto.InsertMember">
+		INSERT INTO MEMBER(
+			SNS_ID,
+			CITY,
+			NAME,
+			STREET,
+			ZIPCODE
+		)
+		VALUES (
+			#{snsId},
+			#{city},
+			#{name},
+			#{street},
+			#{zipcode}
+		)
+	</insert>
 
 
 </mapper>

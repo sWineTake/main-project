@@ -1,4 +1,4 @@
-package com.playground.song.mvc.mvc.user.dto;
+package com.playground.song.mvc.user.dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Builder;

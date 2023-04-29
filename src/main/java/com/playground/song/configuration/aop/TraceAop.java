@@ -25,7 +25,7 @@ public class TraceAop {
 	 * @return
 	 * @throws Throwable
 	 */
-	@Around("execution(* com.playground.song.mvc.admin.repository..*(..))")
+	@Around("execution(* com.playground.song.mvc..repository..*(..))")
 	public Object queryExecute(ProceedingJoinPoint joinPoint) throws Throwable {
 		// 시작 전 사용될 내용
 		long start = System.currentTimeMillis();

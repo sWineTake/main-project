@@ -1,50 +1,104 @@
--- DataBase 생성
-CREATE DATABASE STUDY_DB;
-USE STUDY_DB;
+drop table if exists ITEM CASCADE;
+drop table if exists CATEGORY CASCADE;
+drop table if exists CATEGORY_ITEM CASCADE;
+drop table if exists DELIVERY CASCADE;
+drop table if exists MEMBER CASCADE;
+drop table if exists ORDER_ITEM CASCADE;
+drop table if exists ORDERS CASCADE;
+drop table if exists ALBUM CASCADE;
+drop table if exists Book CASCADE;
+drop table if exists MOVIE CASCADE;
 
-create table test
-(
-	COLUMN1 int auto_increment primary key,
-	COLUMN2 varchar(20) null
-)
-comment '테스트 연결 확인 테이블';
+create table ITEM (
+    ITEM_ID bigint not null,
+    CREATE_DATE timestamp,
+    LAST_MODIFIED_DATE timestamp,
+    NAME varchar(255),
+    PRICE integer not null,
+    STOCK_QUANTITIY integer not null,
+    primary key (ITEM_ID)
+);
 
-create table user
-(
-	user_id varchar(20) not null comment '유저 이름',
-	password varchar(200) null comment '패스워드',
-	email varchar(50) null comment '이메일',
-	role varchar(10) default 'R001' not null comment '권한 레벨',
-	insert_dt datetime default CURRENT_TIMESTAMP not null comment '생성일자',
-	delete_dt datetime null comment '삭제 일자',
-	login_dt datetime null comment '로그인 일자',
-	wrong_cnt int default 0 null comment '패스워드 틀릿 횟수',
-	use_yn varchar(2) default 'Y' not null,
-	constraint user_user_id_uindex unique (user_id)
-)
-comment '유저 정보';
-alter table user add primary key (user_id);
-INSERT INTO study_db.user (user_id, password, email, role, insert_dt, delete_dt, login_dt, wrong_cnt, use_yn) VALUES ('admin001', '$2a$10$TfMsxLCKa8YcioPlkOh02uA2MTyReTcugC6v59d8YoIcuDrjzfn1y', 'woosong@naver.com', 'R003', '2022-04-11 10:23:53', null, null, 0, 'Y');
-INSERT INTO study_db.user (user_id, password, email, role, insert_dt, delete_dt, login_dt, wrong_cnt, use_yn) VALUES ('user1234', '$2a$10$XH09U37pBeH985V0gRPZrO3xtZL.6L.bw9XojbCyl8bBrln6Av.TK', 'test1234@naver.com', 'R000', '2022-04-22 08:14:54', null, null, 0, 'Y');
+create table CATEGORY (
+    CATEGORY_ID bigint not null,
+    CREATE_DATE timestamp,
+    LAST_MODIFIED_DATE timestamp,
+    NAME varchar(255),
+    PARENT_ID bigint,
+    primary key (CATEGORY_ID)
+);
 
-create table board
-(
-	board_seq int auto_increment comment '시퀀스' primary key,
-	board_code varchar(30) not null comment '게시판 분류 코드(comm_code)',
-	title varchar(100) not null comment '제목',
-	content text not null comment '내용',
-	writer varchar(20) not null comment '글쓴이',
-	writer_ip varchar(30) not null comment '글쓴이 IP',
-	insert_dt datetime default CURRENT_TIMESTAMP null comment '글 생성 일자',
-	delete_dt datetime null comment '글 삭제 일자',
-	up_count int default 0 null comment '추천수',
-	use_yn varchar(2) null comment '사용여부'
-)
-comment '게시판 ';
+create table CATEGORY_ITEM (
+    CATEGORY_ITEM_ID bigint not null,
+    CREATE_DATE timestamp,
+    LAST_MODIFIED_DATE timestamp,
+    CATEGORY_ID bigint,
+    ITEM_ID bigint,
+    primary key (CATEGORY_ITEM_ID)
+);
 
+create table DELIVERY (
+    DELIVERY_ID bigint not null,
+    CREATE_DATE timestamp,
+    LAST_MODIFIED_DATE timestamp,
+    CITY varchar(255),
+    DELIVERY_STATUS varchar(255),
+    STREET varchar(255),
+    ZIPCODE varchar(255),
+    primary key (DELIVERY_ID)
+);
 
+CREATE TABLE MEMBER (
+  MEMBER_ID BIGINT AUTO_INCREMENT NOT NULL,
+  SNS_ID VARCHAR(255),
+  CREATE_DATE TIMESTAMP,
+  LAST_MODIFIED_DATE TIMESTAMP,
+  CITY VARCHAR(255),
+  NAME VARCHAR(255),
+  STREET VARCHAR(255),
+  ZIPCODE VARCHAR(255),
+  PRIMARY KEY (MEMBER_ID)
+);
 
+create table ORDER_ITEM (
+    ORDER_ITEM_ID bigint not null,
+    CREATE_DATE timestamp,
+    LAST_MODIFIED_DATE timestamp,
+    COUNT integer not null,
+    ORDER_PRICE integer not null,
+    ITEM_ID bigint,
+    ORDER_ID bigint,
+    primary key (ORDER_ITEM_ID)
+);
 
+create table ORDERS (
+    ORDER_ID bigint not null,
+    CREATE_DATE timestamp,
+    LAST_MODIFIED_DATE timestamp,
+    ORDER_DATE timestamp,
+    STATUS varchar(255),
+    DELIVERY_ID bigint,
+    MEMBER_ID bigint,
+    primary key (ORDER_ID)
+);
 
+create table ALBUM (
+    ARTIST varchar(255),
+    ETC varchar(255),
+    ITEM_ID bigint not null,
+    primary key (ITEM_ID)
+);
 
+create table Book (
+    AUTHOR varchar(255),
+    ISBN varchar(255),
+    ITEM_ID bigint not null,
+    primary key (ITEM_ID)
+);
 
+create table MOVIE (
+    ACTOR varchar(255),
+    DIRECTOR varchar(255),
+    ITEM_ID bigint not null,
+    primary key (ITEM_ID)
+);

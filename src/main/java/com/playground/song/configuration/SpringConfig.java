@@ -1,7 +1,7 @@
 package com.playground.song.configuration;
 
 import com.playground.song.configuration.exception.BaseMappingExceptionResolver;
-import com.playground.song.interceptor.BaseHandlerInterceptor;
+import com.playground.song.configuration.interceptor.BaseHandlerInterceptor;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcRegistrations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -31,7 +31,7 @@ import java.util.Properties;
  */
 @Configuration
 // 매퍼를 하나씩 등록하는게 아닌 페키지 경로를 지정하여 이하 위치에있는 인터페이스들은 전부 맵퍼로 사용할수있습니다.
-@MapperScan(value = { "com.twocow.song.*" })
+@MapperScan(value = { "com.playground.song.*" })
 @RequiredArgsConstructor
 @Slf4j
 public class DatabaseConfiguration {
@@ -67,7 +67,7 @@ public class DatabaseConfiguration {
 		sqlSessionFactoryBean.setDataSource(dataSource);
 		sqlSessionFactoryBean.setMapperLocations(
 			new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/**.xml"));
-		sqlSessionFactoryBean.setTypeAliasesPackage("com.twocow.song.*");
+		sqlSessionFactoryBean.setTypeAliasesPackage("com.playground.song.*");
 
 		// DB세션 구성
 		org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
@@ -118,7 +118,7 @@ public class DatabaseConfiguration {
 	@Bean
 	public Advisor txAdviceAdvisor(final TransactionInterceptor txAdvice) {
 		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression("execution(* com.twocow.song..service.*Service.*(..))");
+		pointcut.setExpression("execution(* com.playground.song.mvc..*Service.*(..))");
 		return new DefaultPointcutAdvisor(pointcut, txAdvice);
 	}
 

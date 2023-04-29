@@ -1,4 +1,4 @@
-package com.playground.song.mvc.mvc.user;
+package com.playground.song.mvc.user;
 
 import com.playground.song.configuration.annotation.RequestConfig;
 import com.playground.song.enums.Menu;

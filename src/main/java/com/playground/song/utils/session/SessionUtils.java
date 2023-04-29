@@ -1,7 +1,7 @@
 package com.playground.song.utils.session;
 
 import com.playground.song.enums.Role;
-import com.playground.song.mvc.mvc.user.dto.User;
+import com.playground.song.mvc.user.dto.User;
 import com.playground.song.utils.servlet.ServletUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;

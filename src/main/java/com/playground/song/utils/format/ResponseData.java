@@ -1,7 +1,10 @@
 package com.playground.song.utils.format;
 
 import com.playground.song.enums.api.ApiError;
+import com.playground.song.utils.messages.MessageConfig;
 import lombok.*;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Getter
 @Setter
@@ -22,5 +25,16 @@ public class ResponseData<T> {
 	public ResponseData(boolean error, String message) {
 		this.error = error;
 		this.message = message;
+	}
+
+	public ResponseData(boolean error, HttpServletResponse httpServletResponse) {
+		this.error = error;
+		httpServletResponse.setStatus(error ? HttpServletResponse.SC_OK : HttpServletResponse.SC_BAD_REQUEST);
+	}
+
+	public ResponseData(boolean error, T response, HttpServletResponse httpServletResponse) {
+		this.error = error;
+		this.response = response;
+		httpServletResponse.setStatus(error ? HttpServletResponse.SC_OK : HttpServletResponse.SC_BAD_REQUEST);
 	}
 }

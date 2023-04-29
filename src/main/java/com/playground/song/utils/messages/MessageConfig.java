@@ -19,6 +19,7 @@ public class MessageConfig {
 	}
 
 	public String getMessage(String code, String label, int min, int max) {
-		return messageSource.getMessage(code, new String[]{label, Integer.toString(min), Integer.toString(max)}, LocaleContextHolder.getLocale());
+		return messageSource.getMessage(code, new String[]{label, Integer.toString(min), Integer.toString(max)},
+				LocaleContextHolder.getLocale());
 	}
 }
