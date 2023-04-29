@@ -101,7 +101,7 @@
 		<level value="ERROR" />
 	</logger>
 
-	<logger name="com.twocow.song">
+	<logger name="playground.song">
 		<level value="DEBUG" />
 	</logger>
 

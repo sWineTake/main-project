@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-	<property name="LOGS_ABSOLUTE_PATH" value="D:/log" />
+	<property name="LOGS_ABSOLUTE_PATH" value="log" />
 	<property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} %p %c[%method:%line] - %msg%n" />
 	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOGS_ABSOLUTE_PATH}/base.log</file>
@@ -101,7 +101,7 @@
 		<level value="ERROR" />
 	</logger>
 
-	<logger name="com.twocow.song">
+	<logger name="playground.song">
 		<level value="DEBUG" />
 	</logger>
 

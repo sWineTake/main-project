@@ -1,0 +1,19 @@
+package com.playground.song.mvc.common.mvc.controller;
+
+import com.playground.song.configuration.annotation.RequestConfig;
+import com.playground.song.enums.Menu;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class MainController {
+
+	@GetMapping("/")
+	@RequestConfig(menu = Menu.COMMON_MAIN)
+	public String firstMain() {
+		return "common/user/login";
+	}
+
+
+
+}

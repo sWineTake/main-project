@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 		PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.twocow.song.mvc.admin.repository.user.UserRepository">
+<mapper namespace="com.playground.song.mvc.admin.repository.user.UserRepository">
 	<select id="checkUserIdExist" resultType="Integer" parameterType="String">
 		SELECT COUNT(1)
 		  FROM USER
@@ -17,7 +17,7 @@
 		   AND USER_ID = #{email}
 	</select>
 
-	<insert id="insertUserInfo" parameterType="com.twocow.song.mvc.common.vo.user.User">
+	<insert id="insertUserInfo" parameterType="com.playground.song.mvc.common.vo.user.User">
 		INSERT INTO USER (
 		    USER_ID,
 			PASSWORD,
@@ -32,8 +32,7 @@
 		)
 	</insert>
 
-	<select id="getUserInfo" parameterType="String"
-	        resultType="com.twocow.song.mvc.common.vo.user.User">
+	<select id="getUserInfo" parameterType="String" resultType="com.playground.song.mvc.common.vo.user.User">
 		SELECT  USER_ID,
 				PASSWORD,
 				EMAIL,

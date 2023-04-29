@@ -8,7 +8,7 @@
 		<version>2.6.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.twocow.</groupId>
+	<groupId>playground.</groupId>
 	<artifactId>song</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>song</name>
@@ -129,24 +129,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Redis Session 라이브러리 -->
-		<dependency>
-			<groupId>org.springframework.session</groupId>
-			<artifactId>spring-session-data-redis</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-redis</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-
-		<!-- Oauth 라이브러리 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-			<version>2.6.4</version>
-		</dependency>
 	</dependencies>
 
 	<build>
