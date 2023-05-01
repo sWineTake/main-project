@@ -41,6 +41,12 @@ public class SpringConfig implements WebMvcConfigurer, WebMvcRegistrations {
 				"/js/**",
 				"/scss/**",
 				"/vendor/**",
+
+				"/swagger-resources/**",
+				"/swagger-ui/**",
+				"/api-docs/**",
+				"/v2/api-docs",
+
 				"/favicon.ico"
 		);
 		registry.addInterceptor(baseHandlerInterceptor())

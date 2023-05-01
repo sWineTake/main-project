@@ -6,15 +6,19 @@
 3. AOP 공통 처리, Interceptor
 
 ### 프로젝트 정보
-> 계정 정보
-> > 어드민 : admin001 / test1234@@
->
-> > 일반 : user1234 / test1234@@
+> 서버 실행 방법
+> > 로컬 DB가있어야함 -> todo)수정
+> 
+> > Active Profile : local 
+
 
 > DataBase
 > > DB 트랜잭션 관리 Service단에서 메소드 호출시 이름으로 트랜잭션 관리됨
 > 
 > > DatabaseConfiguration 파일 참고
+
+> Swagger API 명세서
+> > /swagger-ui/swagger-ui/index.html 
 
 > log
 > > AOP에서 xml실행전 클래스명.id 기록
@@ -27,7 +31,7 @@
 > 공통
 > > 에러 처리 BaseMappingExceptionResolver 에서 공통으로 처리함
 >
-> > Config 어노테이션처리로 preHandler에서 분기 가능 (스프링 시큐리티 사용으로 사용자가 알맞게 사용 분리할수있음)
+> > Config 어노테이션처리로 preHandler에서 분기 가능
 > 
 > > Validation 객체를 만들어서 파라미터에 맞는 값 체크 가능 - 기준 맞지않을시 커스텀에러 발생
 
