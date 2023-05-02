@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.playground.song.mvc.main.MainRepository">
 
-	<insert id="insertMember" parameterType="com.playground.song.mvc.main.dto.InsertMember">
+	<insert id="insertMember" parameterType="com.playground.song.mvc.main.dto.JoinMember">
 		INSERT INTO MEMBER(
 			SNS_ID,
 			CITY,

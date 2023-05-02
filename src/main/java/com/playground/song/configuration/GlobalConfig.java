@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -17,9 +18,9 @@ import java.util.Properties;
   * 로컬, 개발, 운영에 따른 값을 프로젝트 시작 후 바로 셋팅하여 설정함
   * 서버단에서 바로 사용가능
   * **/
-@Component
-@Getter
 @Slf4j
+@Getter
+@Configurable
 public class GlobalConfig {
 
 	@Autowired

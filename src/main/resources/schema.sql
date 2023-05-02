@@ -1,3 +1,5 @@
+use study_by;
+
 drop table if exists ITEM CASCADE;
 drop table if exists CATEGORY CASCADE;
 drop table if exists CATEGORY_ITEM CASCADE;
