@@ -25,11 +25,8 @@ public class MainController {
 	@PostMapping("/v1/member/join")
 	@Operation(summary = "회원 가입", description = "회원가입이 완료됩니다.", tags = {"MainController"})
 	@ApiResponses({
-			@ApiResponse(responseCode = "200", description = "OK",
-				content = @Content(schema = @Schema(implementation = ResponseData.class))),
-			@ApiResponse(responseCode = "400", description = "BAD REQUEST"),
-			@ApiResponse(responseCode = "404", description = "NOT FOUND"),
-			@ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR")
+		@ApiResponse(responseCode = "200", description = "OK",
+			content = @Content(schema = @Schema(implementation = ResponseData.class)))
 	})
 	public ResponseData<Boolean> memberInsert(
 			@RequestBody InsertMember insertMember, HttpServletResponse response) {

@@ -35,18 +35,9 @@ public class SpringConfig implements WebMvcConfigurer, WebMvcRegistrations {
 	public void addInterceptors(InterceptorRegistry registry) {
 		// 기본 인터셉터에 제외될 URL
 		List<String> excludePathPatterns = Arrays.asList(
-				"/css/**",
-				"/image/**",
-				"/sample/**",
-				"/js/**",
-				"/scss/**",
-				"/vendor/**",
-
 				"/swagger-resources/**",
 				"/swagger-ui/**",
 				"/api-docs/**",
-				"/v2/api-docs",
-
 				"/favicon.ico"
 		);
 		registry.addInterceptor(baseHandlerInterceptor())
